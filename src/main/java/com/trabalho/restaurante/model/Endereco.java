@@ -21,7 +21,6 @@ public class Endereco {
                 "\nCidade: " + cidade +
                 "\nBairro: " + bairro +
                 "\nRua: " + rua +
-                "\n" +
-                "Número: " + numero;
+                "\nNúmero: " + numero;
     }
 }

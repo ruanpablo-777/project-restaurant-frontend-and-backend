@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Cliente {
     String nome;
     int idade;
-    String cpf;
+    String email;
+    String senha;
     Endereco endereco;
-    int numeroDoPedido;
 }
