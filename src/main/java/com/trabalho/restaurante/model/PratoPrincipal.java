@@ -8,12 +8,12 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 public class PratoPrincipal extends Pratos{
-    private String tipoCarne;
+    private String acompanhamento;
     private boolean isVegan;
 
-    public PratoPrincipal(String nome, double preco, String descricao, String tipoCarne, boolean isVegan) {
+    public PratoPrincipal(String nome, double preco, String descricao, String acompanhamento, boolean isVegan) {
         super(nome, preco, descricao);
-        this.tipoCarne = tipoCarne;
+        this.acompanhamento = acompanhamento;
         this.isVegan = isVegan;
     }
 }

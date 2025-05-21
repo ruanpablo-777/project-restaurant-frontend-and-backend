@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class Sobremesa extends Pratos{
     private boolean temAcucar;
-    private int peso;
+    private double peso;
 
-    public Sobremesa(String nome, double preco, String descricao, boolean temAcucar, int peso) {
+    public Sobremesa(String nome, double preco, String descricao, boolean temAcucar, double peso) {
         super(nome, preco, descricao);
         this.temAcucar = temAcucar;
         this.peso = peso;
