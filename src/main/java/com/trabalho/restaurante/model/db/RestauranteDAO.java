@@ -32,7 +32,9 @@ public class RestauranteDAO {
         return idGerado;
     }
 
-    public Endereco selecionar(int id) throws SQLException {
+    public Restaurante selecionar(int id) throws SQLException, ClassNotFoundException {
+        EnderecoDAO enderecoDAO = new EnderecoDAO();
+
         String sql = "SELECT * from restaurante WHERE id = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
@@ -41,8 +43,9 @@ public class RestauranteDAO {
         if (resultado.next()) {
             String nome = resultado.getString("nome");
             int avaliacao = resultado.getInt("avaliacao");
-            Endereco
-            return new Restaurante(id, numero, rua, bairro, cidade, cep);
+            int idEndereco = resultado.getInt("endereco");
+            Endereco endereco = enderecoDAO.selecionar(idEndereco);
+            return new Restaurante(id, nome, avaliacao, endereco);
         } else {
             return null;
         }
@@ -68,17 +71,17 @@ public class RestauranteDAO {
 //        }
 //    }
 
-    public boolean deletar(Endereco endereco) throws SQLException {
-        String sql = "DELETE FROM endereco WHERE id = ?";
-        PreparedStatement stmt = conexao.prepareStatement(sql);
-
-        stmt.setInt(1, endereco.getId());
-
-        int linhasAfetadas = stmt.executeUpdate();
-        if (linhasAfetadas > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean deletar(Endereco endereco) throws SQLException {
+//        String sql = "DELETE FROM endereco WHERE id = ?";
+//        PreparedStatement stmt = conexao.prepareStatement(sql);
+//
+//        stmt.setInt(1, endereco.getId());
+//
+//        int linhasAfetadas = stmt.executeUpdate();
+//        if (linhasAfetadas > 0) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 }

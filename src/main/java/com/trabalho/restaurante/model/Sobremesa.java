@@ -9,8 +9,14 @@ public class Sobremesa extends Pratos{
     private boolean temAcucar;
     private double peso;
 
-    public Sobremesa(String nome, double preco, String descricao, boolean temAcucar, double peso) {
-        super(nome, preco, descricao);
+    public Sobremesa(int id, String nome, double preco, boolean temAcucar, double peso) {
+        super(id, nome, preco);
+        this.temAcucar = temAcucar;
+        this.peso = peso;
+    }
+
+    public Sobremesa(String nome, double preco, boolean temAcucar, double peso) {
+        super(nome, preco);
         this.temAcucar = temAcucar;
         this.peso = peso;
     }
