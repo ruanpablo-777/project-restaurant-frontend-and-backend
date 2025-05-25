@@ -23,7 +23,6 @@ public class RestauranteApplication implements CommandLineRunner{
 		Endereco endereco = enderecoDAO.selecionar(1);
 		Cliente cliente = new Cliente("bernardo", 20, "email@emial.com", "senha", endereco);
 
-		cliente.getEndereco().getId();
-
+		System.out.println(cliente.getEndereco().getId());
 	}
 }
