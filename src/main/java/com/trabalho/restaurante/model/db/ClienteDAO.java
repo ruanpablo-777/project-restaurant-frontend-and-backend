@@ -15,7 +15,7 @@ public class ClienteDAO  {
 
     public int inserir(Cliente cliente) throws SQLException {
 
-        String sql = "INSERT INTO cliente (nome, idade, email, senha, endereco) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO cliente (nome, idade, email, senha, endereco_id) VALUES (?,?,?,?,?)";
 
         PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, cliente.getNome());
@@ -60,24 +60,25 @@ public class ClienteDAO  {
     public Cliente selecionarEmail(String email) throws SQLException, ClassNotFoundException {
         EnderecoDAO enderecoDAO = new EnderecoDAO();
 
-        String sql = "SELECT * from cliente WHERE id = ?";
+        String sql = "SELECT * FROM cliente WHERE email = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setString(1, email);
 
         ResultSet resultado = stmt.executeQuery();
         if (resultado.next()) {
-            int id = resultado.getInt("clienteid");
+            int id = resultado.getInt("id");
             String nome = resultado.getString("nome");
             int idade = resultado.getInt("idade");
             String senha = resultado.getString("senha");
-            int idEndereco = resultado.getInt("endereco");
+            int idEndereco = resultado.getInt("endereco_id");
 
             Endereco endereco = enderecoDAO.selecionar(idEndereco);
-            return new Cliente(id, nome, idade, email, senha,  endereco);
+            return new Cliente(id, nome, idade, email, senha, endereco);
         } else {
             return null;
         }
     }
+
 
 //    public boolean atualizar(Endereco endereco) throws SQLException {
 //        String sql = "UPDATE endereco SET rua = ?, numero = ?, cep = ?, cidade = ?, estado = ? WHERE id = ?";

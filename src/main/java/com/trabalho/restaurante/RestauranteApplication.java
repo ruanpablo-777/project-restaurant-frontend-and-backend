@@ -18,11 +18,11 @@ public class RestauranteApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		EnderecoDAO enderecoDAO = new EnderecoDAO();
+		// EnderecoDAO enderecoDAO = new EnderecoDAO();
 
-		Endereco endereco = enderecoDAO.selecionar(1);
-		Cliente cliente = new Cliente("bernardo", 20, "email@emial.com", "senha", endereco);
+		//Endereco endereco = enderecoDAO.selecionar(1);
+		//Cliente cliente = new Cliente("bernardo", 20, "email@emial.com", "senha", endereco);
 
-		System.out.println(cliente.getEndereco().getId());
+		//System.out.println(cliente.getEndereco().getId());
 	}
 }

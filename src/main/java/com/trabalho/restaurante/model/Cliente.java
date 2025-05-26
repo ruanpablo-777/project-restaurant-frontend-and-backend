@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class Cliente {
     int id;
     String nome;
@@ -18,7 +17,8 @@ public class Cliente {
     String senha;
     Endereco endereco;
 
-    public Cliente(String nome, int idade, String email, String senha, Endereco endereco) {
+    public Cliente(int id, String nome, int idade, String email, String senha, Endereco endereco) {
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.email = email;

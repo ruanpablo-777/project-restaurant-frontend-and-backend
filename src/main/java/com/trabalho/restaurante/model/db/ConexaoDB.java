@@ -13,7 +13,7 @@ public class ConexaoDB {
         String enderecoBaseDados = String.format("jdbc:mysql://localhost:%s/%s", porta, nomeBaseDados);
 
         String login = "root";
-        String senha = "bTb2302@";
+        String senha = "";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
