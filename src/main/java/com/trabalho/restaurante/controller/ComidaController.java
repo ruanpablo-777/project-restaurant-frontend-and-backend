@@ -16,4 +16,10 @@ public class ComidaController {
         ComidaDAO dao = new ComidaDAO();
         return dao.listarTodas();
     }
+
+    @GetMapping("/comidas/{id}")
+    public  Comida buscarPorId(@PathVariable int id) {
+        ComidaDAO dao = new ComidaDAO();
+        return dao.buascarPorId(id);
+    }
 }

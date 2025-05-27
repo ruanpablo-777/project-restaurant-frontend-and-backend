@@ -50,4 +50,34 @@ public class ComidaDAO {
 
         return comidas;
     }
+
+    public Comida buascarPorId(int id) {
+        String sql = "SELECT * FROM comida WHERE id = ?";
+
+        try(Connection conn = ConexaoDB.getConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String nome = rs.getString("nome");
+                String descricao = rs.getString("descricao");
+                double preco = rs.getDouble("preco");
+                String tipo = rs.getString("tipo");
+                String imagens = rs.getString("imagens");
+
+                return new Comida(id, nome, descricao, preco, tipo, imagens) {
+                    @Override
+                    public void mostrarDetalhes() {
+
+                    }
+                };
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
 }

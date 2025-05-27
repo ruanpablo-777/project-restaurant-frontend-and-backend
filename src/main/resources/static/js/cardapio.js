@@ -65,7 +65,7 @@ async function carregarCardapio() {
                 itemCardapio.appendChild(nota);
 
                 const linkComida = document.createElement('a');
-                linkComida.href = `http://localhost:3000/api/comida/${comida.id}`;
+                linkComida.href = `./comida.html?${comida.id}`;
                 linkComida.appendChild(itemCardapio);
                 grupoItemCardapio.appendChild(linkComida);
 
