@@ -1,23 +1,42 @@
 package com.trabalho.restaurante.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-public class Bebida extends Pratos{
+public class Bebida extends Comida {
     private boolean isAlcoolica;
-    private int volume;
+    private String volume;
 
-    public Bebida(int id, String nome, double preco, boolean isAlcoolica, int volume) {
-        super(id, nome, preco);
+    public Bebida(int id, String nome, String descricao, double preco, boolean isAlcoolica, String volume, String tipo, String imagens) {
+        super(id, nome, descricao, preco, tipo, imagens);
         this.isAlcoolica = isAlcoolica;
         this.volume = volume;
     }
 
-    public Bebida(String nome, double preco, boolean isAlcoolica, int volume) {
-        super(nome, preco);
+    public Bebida(String nome, String descricao, double preco, boolean isAlcoolica, String volume, String tipo, String imagens) {
+        super(0,nome, descricao, preco, tipo, imagens);
         this.isAlcoolica = isAlcoolica;
+        this.volume = volume;
+
+    }
+
+    @Override
+    public void mostrarDetalhes() {
+        System.out.println("Bebida: " + nome + " - " + descricao + " - " + volume +
+                (isAlcoolica ? " (Alcoólica)" : " (Não alcoólica)") + " - R$" + preco);
+    }
+
+    // Getters e Setters específicos
+    public boolean isAlcoolica() {
+        return isAlcoolica;
+    }
+
+    public void setAlcoolica(boolean alcoolica) {
+        isAlcoolica = alcoolica;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
         this.volume = volume;
     }
 }

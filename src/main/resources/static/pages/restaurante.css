@@ -44,7 +44,6 @@ body {
 
 .image-food {
     width: 168px;
-    height: 100px;
     border-radius: 10px;
 }
 
@@ -148,6 +147,7 @@ a {
         width:168px;
         height: 100px;
         height: auto;
+        background-size: cover;
     }
     
 }
