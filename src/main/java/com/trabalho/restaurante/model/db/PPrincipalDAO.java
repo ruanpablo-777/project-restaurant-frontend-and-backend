@@ -1,9 +1,12 @@
 package com.trabalho.restaurante.model.db;
 
 import com.trabalho.restaurante.model.PratoPrincipal;
+import com.trabalho.restaurante.model.Pratos;
 import com.trabalho.restaurante.model.Sobremesa;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PPrincipalDAO {
     private Connection conexao;
@@ -33,7 +36,7 @@ public class PPrincipalDAO {
         return idGerado;
     }
 
-    public PratoPrincipal selecionar(int id) throws SQLException, ClassNotFoundException {
+    public PratoPrincipal selecionarById(int id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * from pratoprincipal WHERE id = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
@@ -48,6 +51,25 @@ public class PPrincipalDAO {
         } else {
             return null;
         }
+    }
+
+    public List<PratoPrincipal> selecionarAll() throws SQLException, ClassNotFoundException {
+
+        String sql = "SELECT * from pratoprincipal";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        ResultSet resultado = stmt.executeQuery();
+
+        List<PratoPrincipal> listaPratoPrincipal = new ArrayList<>();
+        while (resultado.next()) {
+            int id = resultado.getInt("pratoprincipalid");
+            String nome = resultado.getString("nome");
+            double preco = resultado.getDouble("preco");
+            String acompanhamento = resultado.getString("acompanhamento");
+            boolean isvegan = resultado.getBoolean("isvegan");
+            PratoPrincipal pratoPrincipal =  new PratoPrincipal(id, nome, preco, acompanhamento, isvegan);
+            listaPratoPrincipal.add(pratoPrincipal);
+        }
+        return listaPratoPrincipal;
     }
 
 //    public boolean atualizar(Endereco endereco) throws SQLException {

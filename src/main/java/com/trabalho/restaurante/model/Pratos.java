@@ -8,9 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Pratos {
-    int id;
-    String nome;
-    double preco;
+    private int id;
+    private String nome;
+    private double preco;
 
     public Pratos(int id, String nome, double preco) {
         this.id = id;

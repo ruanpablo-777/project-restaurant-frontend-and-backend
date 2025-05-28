@@ -4,6 +4,8 @@ import com.trabalho.restaurante.model.Bebida;
 import com.trabalho.restaurante.model.Sobremesa;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SobremesaDAO {
     private Connection conexao;
@@ -33,7 +35,7 @@ public class SobremesaDAO {
         return idGerado;
     }
 
-    public Sobremesa selecionar(int id) throws SQLException, ClassNotFoundException {
+    public Sobremesa selecionarById(int id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * from sobremesa WHERE id = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
@@ -48,6 +50,25 @@ public class SobremesaDAO {
         } else {
             return null;
         }
+    }
+
+    public List<Sobremesa> selecionarAll() throws SQLException, ClassNotFoundException {
+
+        String sql = "SELECT * from sobremesa";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        ResultSet resultado = stmt.executeQuery();
+
+        List<Sobremesa> listaSobremesas = new ArrayList<>();
+        while (resultado.next()) {
+            int id = resultado.getInt("sobremesaid");
+            String nome = resultado.getString("nome");
+            double preco = resultado.getDouble("preco");
+            double peso = resultado.getDouble("peso");
+            boolean temacucar = resultado.getBoolean("temacucar");
+            Sobremesa sobremesa =  new Sobremesa(id, nome, preco, temacucar, peso);
+            listaSobremesas.add(sobremesa);
+        }
+        return listaSobremesas;
     }
 
 //    public boolean atualizar(Endereco endereco) throws SQLException {

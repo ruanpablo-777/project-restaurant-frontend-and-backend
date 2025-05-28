@@ -1,8 +1,11 @@
 package com.trabalho.restaurante.model.db;
 
 import com.trabalho.restaurante.model.Bebida;
+import com.trabalho.restaurante.model.PratoPrincipal;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BebidaDAO {
     private Connection conexao;
@@ -32,7 +35,7 @@ public class BebidaDAO {
         return idGerado;
     }
 
-    public Bebida selecionar(int id) throws SQLException, ClassNotFoundException {
+    public Bebida selecionarById(int id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * from bebidas WHERE id = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
@@ -47,6 +50,25 @@ public class BebidaDAO {
         } else {
             return null;
         }
+    }
+
+    public List<Bebida> selecionarAll() throws SQLException, ClassNotFoundException {
+
+        String sql = "SELECT * from bebida";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        ResultSet resultado = stmt.executeQuery();
+
+        List<Bebida> listaBebida = new ArrayList<>();
+        while (resultado.next()) {
+            int id = resultado.getInt("bebidaid");
+            String nome = resultado.getString("nome");
+            double preco = resultado.getDouble("preco");
+            boolean isalcoolica = resultado.getBoolean("isalcoolica");
+            int volume = resultado.getInt("volume");
+            Bebida bebida =  new Bebida(id, nome, preco, isalcoolica, volume);
+            listaBebida.add(bebida);
+        }
+        return listaBebida;
     }
 
 //    public boolean atualizar(Endereco endereco) throws SQLException {

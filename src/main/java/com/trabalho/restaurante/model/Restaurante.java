@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Restaurante {
-    int id;
-    String nome;
-    int avaliacao;
-    Endereco endereco;
+    private int id;
+    private String nome;
+    private int avaliacao;
+    private Endereco endereco;
 
     public Restaurante(String nome, int avaliacao, Endereco endereco) {
         this.nome = nome;

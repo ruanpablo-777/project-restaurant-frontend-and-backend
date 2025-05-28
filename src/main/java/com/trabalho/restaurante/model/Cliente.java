@@ -11,12 +11,12 @@ import java.util.stream.Stream;
 @Setter
 @AllArgsConstructor
 public class Cliente {
-    int id;
-    String nome;
-    int idade;
-    String email;
-    String senha;
-    Endereco endereco;
+    private int id;
+    private String nome;
+    private int idade;
+    private String email;
+    private String senha;
+    private Endereco endereco;
 
     public Cliente(String nome, int idade, String email, String senha, Endereco endereco) {
         this.nome = nome;
