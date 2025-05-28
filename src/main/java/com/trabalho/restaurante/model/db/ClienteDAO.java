@@ -57,19 +57,19 @@ public class ClienteDAO  {
         }
     }
 
-    public Cliente selecionarEmail(String email) throws SQLException, ClassNotFoundException {
+    public Cliente login(String email, String senha) throws SQLException, ClassNotFoundException {
         EnderecoDAO enderecoDAO = new EnderecoDAO();
 
-        String sql = "SELECT * from cliente WHERE id = ?";
+        String sql = "SELECT * from cliente WHERE email = ? and senha = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setString(1, email);
+        stmt.setString(2, senha);
 
         ResultSet resultado = stmt.executeQuery();
         if (resultado.next()) {
             int id = resultado.getInt("clienteid");
             String nome = resultado.getString("nome");
             int idade = resultado.getInt("idade");
-            String senha = resultado.getString("senha");
             int idEndereco = resultado.getInt("endereco");
 
             Endereco endereco = enderecoDAO.selecionar(idEndereco);
@@ -78,6 +78,8 @@ public class ClienteDAO  {
             return null;
         }
     }
+
+
 
 //    public boolean atualizar(Endereco endereco) throws SQLException {
 //        String sql = "UPDATE endereco SET rua = ?, numero = ?, cep = ?, cidade = ?, estado = ? WHERE id = ?";
