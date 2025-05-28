@@ -10,6 +10,7 @@ form.addEventListener("submit", function (event) {
         senha: document.getElementById("senha").value,
         endereco: {
             cep: document.getElementById("cep").value,
+            estado: document.getElementById("estado").value,
             cidade: document.getElementById("cidade").value,
             bairro: document.getElementById("bairro").value,
             rua: document.getElementById("rua").value,

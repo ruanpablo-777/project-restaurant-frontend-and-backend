@@ -3,36 +3,38 @@ package com.trabalho.restaurante.controller;
 import com.trabalho.restaurante.model.Cliente;
 import com.trabalho.restaurante.model.Endereco;
 import com.trabalho.restaurante.model.db.ClienteDAO;
+import com.trabalho.restaurante.model.db.ConexaoDB;
 import com.trabalho.restaurante.model.db.EnderecoDAO;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/cliente")
-@CrossOrigin(origins = "*")
+
 public class ClienteController {
 
+    // 🔸 Cadastrar Cliente
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrarCliente(@RequestBody Cliente cliente) {
         try {
-            // 1. Cadastrar endereço primeiro
+            // Cadastrar endereço primeiro
             Endereco endereco = cliente.getEndereco();
             EnderecoDAO enderecoDAO = new EnderecoDAO();
             int idEndereco = enderecoDAO.inserir(endereco);
 
-            // Atualiza o id do endereço no objeto cliente
             endereco.setId(idEndereco);
             cliente.setEndereco(endereco);
 
-            // 2. Cadastrar cliente com o endereço já cadastrado
+            // Cadastrar cliente
             ClienteDAO clienteDAO = new ClienteDAO();
             int idCliente = clienteDAO.inserir(cliente);
 
-            // Retorna JSON com sucesso e id do cliente
             return ResponseEntity.ok(Map.of(
                     "status", "success",
                     "message", "Cliente cadastrado com sucesso",
@@ -41,8 +43,6 @@ public class ClienteController {
 
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-
-            // Retorna JSON de erro com status 400 Bad Request
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
                     "status", "error",
                     "message", "Erro ao cadastrar cliente: " + e.getMessage()
@@ -50,25 +50,127 @@ public class ClienteController {
         }
     }
 
+    // 🔸 Login com sessão
     @PostMapping("/login")
-    public ResponseEntity<String> loginCliente(@RequestBody Map<String, String> loginData) {
-        String email = loginData.get("email");
-        String senha = loginData.get("senha");
+    public ResponseEntity<?> login(@RequestBody Cliente request, HttpSession session) {
+        try (Connection conexao = ConexaoDB.getConexao()) {
+            ClienteDAO dao = new ClienteDAO(conexao);
+            Cliente cliente = dao.login(request.getEmail(), request.getSenha());
 
-        try {
-            ClienteDAO clienteDAO = new ClienteDAO();
-            Cliente cliente = clienteDAO.selecionarEmail(email);
+            if (cliente != null) {
+                session.setAttribute("clienteId", cliente.getId());
+                session.setAttribute("nome", cliente.getNome());
 
-            if (cliente != null && cliente.getSenha().equals(senha)) {
-                return ResponseEntity.ok("Login bem-sucedido!");
+                return ResponseEntity.ok(Map.of(
+                        "status", "success",
+                        "message", "Login realizado com sucesso",
+                        "nome", cliente.getNome()
+                ));
             } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email ou senha incorretos.");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                        "status", "error",
+                        "message", "Email ou senha incorretos"
+                ));
             }
 
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro no servidor.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "Erro no servidor: " + e.getMessage()
+            ));
         }
     }
 
+    // 🔸 Buscar endereço do cliente logado
+    @GetMapping("/endereco")
+    public ResponseEntity<?> buscarEndereco(HttpSession session) {
+        Long clienteId = (Long) session.getAttribute("clienteId");
+
+        if (clienteId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "status", "error",
+                    "message", "Usuário não está logado"
+            ));
+        }
+
+        try (Connection conexao = ConexaoDB.getConexao()) {
+            ClienteDAO dao = new ClienteDAO(conexao);
+            Endereco endereco = dao.buscarEnderecoPorClienteId(clienteId);
+
+            if (endereco != null) {
+                return ResponseEntity.ok(Map.of(
+                        "status", "success",
+                        "endereco", endereco
+                ));
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                        "status", "error",
+                        "message", "Endereço não encontrado"
+                ));
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "Erro no servidor: " + e.getMessage()
+            ));
+        }
+    }
+
+    @PostMapping("/comprar")
+    public ResponseEntity<?> comprar(HttpSession session) {
+        Object idObj = session.getAttribute("clienteId");
+        Long clienteId = null;
+
+        if (idObj instanceof Integer) {
+            clienteId = ((Integer) idObj).longValue();
+        } else if (idObj instanceof Long) {
+            clienteId = (Long) idObj;
+        }
+
+        if (clienteId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "status", "error",
+                    "message", "Usuário não está logado"
+            ));
+        }
+
+        try (Connection conexao = ConexaoDB.getConexao()) {
+            ClienteDAO dao = new ClienteDAO(conexao);
+            Endereco endereco = dao.buscarEnderecoPorClienteId(clienteId);
+
+            if (endereco == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                        "status", "error",
+                        "message", "Endereço não encontrado"
+                ));
+            }
+
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "message", "Compra realizada com sucesso",
+                    "enderecoEntrega", endereco
+            ));
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "Erro no servidor: " + e.getMessage()
+            ));
+        }
+    }
+
+
+    // 🔸 Logout
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpSession session) {
+        session.invalidate();
+        return ResponseEntity.ok(Map.of(
+                "status", "success",
+                "message", "Logout realizado com sucesso"
+        ));
+    }
 }

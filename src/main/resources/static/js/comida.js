@@ -44,6 +44,11 @@ fetch(`http://localhost:3000/api/comidas/${id}`)
         const comprarButton = document.createElement('button');
         comprarButton.classList.add('comprar-comida');
         comprarButton.textContent = 'Comprar';
+        comprarButton.addEventListener('click', () => {
+            // Aqui você pode adicionar a lógica para adicionar a comida ao carrinho
+            alert(`Você comprou ${comida.nome}!`);
+            window.location.href = `./carrinho.html?id=${comida.id}`; // Redireciona para a página do carrinho
+        });
         foodDiv.appendChild(comprarButton);
 
   
