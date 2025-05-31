@@ -20,7 +20,7 @@ form.addEventListener("submit", function (event) {
 
     console.log("Enviando cliente:", cliente);
 
-    fetch("http://localhost:3000/cliente/cadastrar", {
+    fetch("http://localhost:3000/cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

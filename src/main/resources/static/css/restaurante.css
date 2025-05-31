@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+@font-face {
+    font-family: 'code';
+    src: url(../assets/Monocode-Regular-V01.02b.ttf) format('truetype');
+}
 
 :root {
     --primary-color:#000000;
@@ -10,6 +14,8 @@
     --third-color:#ffffff;
     --forth-color:rgb(107, 107, 107);
     --background-color:#ffffff;
+    --font: 'code', sans-serif;
+
 
     
 }
@@ -37,10 +43,9 @@ body {
     justify-content: center;
     align-items: center;
     width: 100vw;
+    
 }
-.box-restaurante-continer {
 
-}
 
 .image-food {
     width: 168px;
@@ -54,6 +59,7 @@ h1 {
     text-align: center;
     margin-top: 20px;
     font-weight: 500;
+    font-family: var(--font);
 }
 h2 {
     margin-bottom: 20px;
@@ -69,7 +75,7 @@ a {
 
 .cardapio {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 20px;
     padding: 10px;
 

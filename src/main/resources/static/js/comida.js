@@ -1,11 +1,11 @@
 const urlParams = new URLSearchParams(window.location.search);
+console.log(urlParams.toString()); // Verifica os parâmetros da URL
 const comidaId = urlParams.get('id');
-console.log('ID da comida:', comidaId);
-const id = urlParams.toString().split('')[0]
-//console.log(id); // Verifica se o ID está correto
+const paramsComida = urlParams.toString().split('=')[0]; // Extrai o ID da comida da URL
+const id = urlParams.toString().split('=')[1]; // Extrai o ID da comida da URL
+console.log(paramsComida)
 
-
-fetch(`http://localhost:3000/api/comidas/${id}`)
+fetch(`http://localhost:3000/${paramsComida}/${id}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Erro ao buscar a comida');

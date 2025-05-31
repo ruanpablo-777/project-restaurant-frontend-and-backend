@@ -1,28 +1,29 @@
 package com.trabalho.restaurante.model.db;
 
-import com.trabalho.restaurante.model.Cliente;
-import com.trabalho.restaurante.model.Endereco;
-import com.trabalho.restaurante.model.Restaurante;
+import com.trabalho.restaurante.model.PratoPrincipal;
+import com.trabalho.restaurante.model.Pratos;
+import com.trabalho.restaurante.model.Sobremesa;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ClienteDAO  {
+public class PPrincipalDAO {
     private Connection conexao;
 
-    public ClienteDAO() throws ClassNotFoundException, SQLException {
+    public PPrincipalDAO() throws ClassNotFoundException, SQLException {
         conexao = ConexaoDB.getConexao();
     }
 
-    public int inserir(Cliente cliente) throws SQLException {
+    public int inserir(PratoPrincipal pratoPrincipal) throws SQLException {
 
-        String sql = "INSERT INTO cliente (nome, idade, email, senha, endereco_id) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO bebida (nome, preco, acompanhamento, isvegan) VALUES (?,?,?,?)";
 
         PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        stmt.setString(1, cliente.getNome());
-        stmt.setString(2, String.valueOf(cliente.getIdade()));
-        stmt.setString(3, cliente.getEmail());
-        stmt.setString(4, cliente.getSenha());
-        stmt.setString(5, String.valueOf(cliente.getEndereco().getId()));
+        stmt.setString(1, pratoPrincipal.getNome());
+        stmt.setString(2, String.valueOf(pratoPrincipal.getPreco()));
+        stmt.setString(3, pratoPrincipal.getAcompanhamento());
+        stmt.setString(4, String.valueOf(pratoPrincipal.isVegan()));
 
         stmt.executeUpdate();
 
@@ -35,51 +36,43 @@ public class ClienteDAO  {
         return idGerado;
     }
 
-    public Cliente selecionarID(int id) throws SQLException, ClassNotFoundException {
-        EnderecoDAO enderecoDAO = new EnderecoDAO();
-
-        String sql = "SELECT * from cliente WHERE id = ?";
+    public PratoPrincipal selecionarById(int id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * from pratoprincipal WHERE id = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
 
         ResultSet resultado = stmt.executeQuery();
         if (resultado.next()) {
             String nome = resultado.getString("nome");
-            int idade = resultado.getInt("idade");
-            String email = resultado.getString("email");
-            String senha = resultado.getString("senha");
-            int idEndereco = resultado.getInt("endereco");
-
-            Endereco endereco = enderecoDAO.selecionar(idEndereco);
-            return new Cliente(id, nome, idade, email, senha,  endereco);
+            double preco = resultado.getDouble("preco");
+            String acompanhamento = resultado.getString("acompanhamento");
+            boolean isVegan = resultado.getBoolean("isvegan");
+            String imagens = resultado.getString("imagens");
+            return new PratoPrincipal(id, nome, preco, acompanhamento, isVegan, imagens);
         } else {
             return null;
         }
     }
 
-    public Cliente login(String email, String senha) throws SQLException, ClassNotFoundException {
-        EnderecoDAO enderecoDAO = new EnderecoDAO();
+    public List<PratoPrincipal> selecionarAll() throws SQLException, ClassNotFoundException {
 
-        String sql = "SELECT * from cliente WHERE email = ? and senha = ?";
+        String sql = "SELECT * from pratoprincipal";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, email);
-        stmt.setString(2, senha);
-
         ResultSet resultado = stmt.executeQuery();
-        if (resultado.next()) {
+
+        List<PratoPrincipal> listaPratoPrincipal = new ArrayList<>();
+        while (resultado.next()) {
             int id = resultado.getInt("id");
             String nome = resultado.getString("nome");
-            int idade = resultado.getInt("idade");
-            int idEndereco = resultado.getInt("endereco_id");
-
-            Endereco endereco = enderecoDAO.selecionar(idEndereco);
-            return new Cliente(id, nome, idade, email, senha,  endereco);
-        } else {
-            return null;
+            double preco = resultado.getDouble("preco");
+            String acompanhamento = resultado.getString("acompanhamento");
+            boolean isvegan = resultado.getBoolean("isVegan");
+            String imagens = resultado.getString("imagens");
+            PratoPrincipal pratoPrincipal =  new PratoPrincipal( id, nome, preco, acompanhamento, isvegan, imagens);
+            listaPratoPrincipal.add(pratoPrincipal);
         }
+        return listaPratoPrincipal;
     }
-
-
 
 //    public boolean atualizar(Endereco endereco) throws SQLException {
 //        String sql = "UPDATE endereco SET rua = ?, numero = ?, cep = ?, cidade = ?, estado = ? WHERE id = ?";

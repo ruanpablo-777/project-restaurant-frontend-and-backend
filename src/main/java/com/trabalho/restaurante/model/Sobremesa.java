@@ -1,17 +1,26 @@
 package com.trabalho.restaurante.model;
 
-public class Sobremesa extends Comida {
+import lombok.Getter;
+import lombok.Setter;
 
-    public Sobremesa(int id, String nome, String descricao, double preco, String tipo, String imagens) {
-        super(id, nome, descricao, preco, tipo, imagens);
+@Getter
+@Setter
+public class Sobremesa extends Pratos{
+    private boolean temAcucar;
+    private double peso;
+    private String imagens;
+
+    public Sobremesa(int id, String nome, double preco, boolean temAcucar, double peso, String imagens) {
+        super(id, nome, preco);
+        this.temAcucar = temAcucar;
+        this.peso = peso;
+        this.imagens = imagens;
     }
 
-    public Sobremesa(String nome, String descricao, double preco, String tipo, String imagens) {
-        super(0, nome, descricao, preco, tipo, imagens);
-    }
-
-    @Override
-    public void mostrarDetalhes() {
-        System.out.println("Sobremesa: " + nome + " - " + descricao + " - R$" + preco);
+    public Sobremesa(String nome, double preco, boolean temAcucar, double peso, String imagens) {
+        super(nome, preco);
+        this.temAcucar = temAcucar;
+        this.peso = peso;
+        this.imagens = imagens;
     }
 }

@@ -2,9 +2,11 @@ package com.trabalho.restaurante.controller;
 
 import com.trabalho.restaurante.model.Cliente;
 import com.trabalho.restaurante.model.Endereco;
+import com.trabalho.restaurante.model.Sobremesa;
 import com.trabalho.restaurante.model.db.ClienteDAO;
 import com.trabalho.restaurante.model.db.ConexaoDB;
 import com.trabalho.restaurante.model.db.EnderecoDAO;
+import com.trabalho.restaurante.model.db.SobremesaDAO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/cliente")
-
 public class ClienteController {
 
     // 🔸 Cadastrar Cliente
@@ -27,6 +28,7 @@ public class ClienteController {
             Endereco endereco = cliente.getEndereco();
             EnderecoDAO enderecoDAO = new EnderecoDAO();
             int idEndereco = enderecoDAO.inserir(endereco);
+            System.out.println(cliente);
 
             endereco.setId(idEndereco);
             cliente.setEndereco(endereco);
@@ -53,8 +55,8 @@ public class ClienteController {
     // 🔸 Login com sessão
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Cliente request, HttpSession session) {
-        try (Connection conexao = ConexaoDB.getConexao()) {
-            ClienteDAO dao = new ClienteDAO(conexao);
+        try {
+            ClienteDAO dao = new ClienteDAO();
             Cliente cliente = dao.login(request.getEmail(), request.getSenha());
 
             if (cliente != null) {
@@ -82,64 +84,22 @@ public class ClienteController {
         }
     }
 
-    // 🔸 Buscar endereço do cliente logado
-    @GetMapping("/endereco")
-    public ResponseEntity<?> buscarEndereco(HttpSession session) {
-        Long clienteId = (Long) session.getAttribute("clienteId");
-
-        if (clienteId == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
-                    "status", "error",
-                    "message", "Usuário não está logado"
-            ));
-        }
-
-        try (Connection conexao = ConexaoDB.getConexao()) {
-            ClienteDAO dao = new ClienteDAO(conexao);
-            Endereco endereco = dao.buscarEnderecoPorClienteId(clienteId);
-
-            if (endereco != null) {
-                return ResponseEntity.ok(Map.of(
-                        "status", "success",
-                        "endereco", endereco
-                ));
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
-                        "status", "error",
-                        "message", "Endereço não encontrado"
-                ));
-            }
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
-                    "status", "error",
-                    "message", "Erro no servidor: " + e.getMessage()
-            ));
-        }
-    }
 
     @PostMapping("/comprar")
     public ResponseEntity<?> comprar(HttpSession session) {
-        Object idObj = session.getAttribute("clienteId");
-        Long clienteId = null;
+        int clienteId = (int) session.getAttribute("clienteId");
 
-        if (idObj instanceof Integer) {
-            clienteId = ((Integer) idObj).longValue();
-        } else if (idObj instanceof Long) {
-            clienteId = (Long) idObj;
-        }
-
-        if (clienteId == null) {
+        if (clienteId == -1) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
                     "status", "error",
                     "message", "Usuário não está logado"
             ));
         }
 
-        try (Connection conexao = ConexaoDB.getConexao()) {
-            ClienteDAO dao = new ClienteDAO(conexao);
-            Endereco endereco = dao.buscarEnderecoPorClienteId(clienteId);
+        try {
+            ClienteDAO dao = new ClienteDAO();
+            EnderecoDAO enderecoDAO = new EnderecoDAO();
+            Endereco endereco = enderecoDAO.selecionar(dao.selecionarID(clienteId).getEndereco().getId());
 
             if (endereco == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
