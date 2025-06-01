@@ -58,8 +58,9 @@ fetch("http://localhost:3000/comprar", {
         const ruanDoCliente = document.querySelector('.street')
         ruanDoCliente.textContent = carrinho.enderecoEntrega.rua
 
+        //cidade do cliente
         const cidadeDoCliente = document.querySelector('.city')
-        cidadeDoCliente.textContent = carrinho.enderecoEntrega.cidade
+        cidadeDoCliente.textContent = carrinho.enderecoEntrega.cidade + ', ' + carrinho.enderecoEntrega.estado
 
     })
     .catch(error => {

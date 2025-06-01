@@ -1,22 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/restaurante.css">
+    <link rel="stylesheet" href="../css/navBar.css">
     <title>Document</title>
 </head>
+
 <body class="light">
-<button class="switch-theme"></button>
-<div class="box-restaurante-continer">
-    <h1 class="nome-restaurante">printf(food.exe)</h1>
-    <div class="cardapio">
-        <div class="food">
-            <h2 class="tipo-da-comida">Pratos Feitos</h2>
-            <div class="grupo-item-cardapio">
-                <a href="comida.html">
+<nav class="navbar">
+    <div class="logo">
+        <a href="#">printf(food.exe)</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+  </div>
+
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Cardápio ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#pratos">Pratos</a></li>
+                <li><a href="#bebidas">Bebidas</a></li>
+                <li><a href="#sobremesas">Sobremesas</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Carrinho 🛒</a></li>
+        <li><a href="./perfilDoUsuario.html">Perfil 👤</a></li>
+    </ul>
+    <button class="switch-theme" onclick="toggleDarkMode()">🌙</button>
+</nav>
+
+    <div class="box-restaurante-continer">
+
+        
+        <div class="cardapio">
+            <div class="food">
+                <h2 class="tipo-da-comida">Pratos Feitos</h2>
+                <div class="grupo-item-cardapio">
+                    <a href="comida.html">
+                        <div class="item-cardapio">
+                            <img class="image-food"
+                                src="https://i.pinimg.com/736x/4a/13/b6/4a13b6fe5432289f0a421c408cd4525f.jpg" alt=""
+                                srcset="">
+                            <div class="info-food">
+                                <h3>Nome do Prato</h3>
+                                <p>Descrição do prato</p>
+                                <p>Preço: R$ 20,00</p>
+                            </div>
+                            <div class="nota">5.0</div>
+                        </div>
+                    </a>
                     <div class="item-cardapio">
-                        <img class="image-food" src="https://i.pinimg.com/736x/4a/13/b6/4a13b6fe5432289f0a421c408cd4525f.jpg" alt="" srcset="">
+                        <img class="image-food"
+                            src="https://i.pinimg.com/736x/4a/13/b6/4a13b6fe5432289f0a421c408cd4525f.jpg" alt=""
+                            srcset="">
                         <div class="info-food">
                             <h3>Nome do Prato</h3>
                             <p>Descrição do prato</p>
@@ -24,96 +68,100 @@
                         </div>
                         <div class="nota">5.0</div>
                     </div>
-                </a>
-                <div class="item-cardapio">
-                    <img class="image-food" src="https://i.pinimg.com/736x/4a/13/b6/4a13b6fe5432289f0a421c408cd4525f.jpg" alt="" srcset="">
-                    <div class="info-food">
-                        <h3>Nome do Prato</h3>
-                        <p>Descrição do prato</p>
-                        <p>Preço: R$ 20,00</p>
-                    </div>
-                    <div class="nota">5.0</div>
                 </div>
             </div>
-        </div>
 
-        <div class="food">
-            <h2 class="tipo-da-comida">Lanches</h2>
-            <div class="grupo-item-cardapio">
-                <div class="item-cardapio">
-                    <img class="image-food" src="https://i.pinimg.com/736x/98/44/06/984406ed1866ddfb7f2f8e009055dd5e.jpg" alt="" srcset="">
-                    <div class="info-food">
-                        <h3>Nome do Prato</h3>
-                        <p>Descrição do prato</p>
-                        <p>Preço: R$ 20,00</p>
-                    </div>
-                    <div class="nota">5.0</div>
+            <div class="food">
+                <h2 class="tipo-da-comida">Lanches</h2>
+                <div class="grupo-item-cardapio">
+                    <div class="item-cardapio">
+                        <img class="image-food"
+                            src="https://i.pinimg.com/736x/98/44/06/984406ed1866ddfb7f2f8e009055dd5e.jpg" alt=""
+                            srcset="">
+                        <div class="info-food">
+                            <h3>Nome do Prato</h3>
+                            <p>Descrição do prato</p>
+                            <p>Preço: R$ 20,00</p>
+                        </div>
+                        <div class="nota">5.0</div>
 
-                </div>
-                <div class="item-cardapio">
-                    <img class="image-food" src="https://i.pinimg.com/736x/98/44/06/984406ed1866ddfb7f2f8e009055dd5e.jpg" alt="" srcset="">
-                    <div class="info-food">
-                        <h3>Nome do Prato</h3>
-                        <p>Descrição do prato</p>
-                        <p>Preço: R$ 20,00</p>
                     </div>
-                    <div class="nota">5.0</div>
+                    <div class="item-cardapio">
+                        <img class="image-food"
+                            src="https://i.pinimg.com/736x/98/44/06/984406ed1866ddfb7f2f8e009055dd5e.jpg" alt=""
+                            srcset="">
+                        <div class="info-food">
+                            <h3>Nome do Prato</h3>
+                            <p>Descrição do prato</p>
+                            <p>Preço: R$ 20,00</p>
+                        </div>
+                        <div class="nota">5.0</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="food">
-            <h2 class="tipo-da-comida">Bebidas</h2>
-            <div class="grupo-item-cardapio">
-                <div class="item-cardapio">
-                    <img class="image-food" src="https://i.pinimg.com/736x/79/6c/34/796c34906c9111f02f41a319298a261b.jpg" alt="" srcset="">
-                    <div class="info-food">
-                        <h3>Nome do Prato</h3>
-                        <p>Descrição do prato</p>
-                        <p>Preço: R$ 20,00</p>
+            <div class="food">
+                <h2 class="tipo-da-comida">Bebidas</h2>
+                <div class="grupo-item-cardapio">
+                    <div class="item-cardapio">
+                        <img class="image-food"
+                            src="https://i.pinimg.com/736x/79/6c/34/796c34906c9111f02f41a319298a261b.jpg" alt=""
+                            srcset="">
+                        <div class="info-food">
+                            <h3>Nome do Prato</h3>
+                            <p>Descrição do prato</p>
+                            <p>Preço: R$ 20,00</p>
+                        </div>
+                        <div class="nota">5.0</div>
                     </div>
-                    <div class="nota">5.0</div>
-                </div>
-                <div class="item-cardapio">
-                    <img class="image-food" src="https://i.pinimg.com/736x/79/6c/34/796c34906c9111f02f41a319298a261b.jpg" alt="" srcset="">
-                    <div class="info-food">
-                        <h3>Nome do Prato</h3>
-                        <p>Descrição do prato</p>
-                        <p>Preço: R$ 20,00</p>
+                    <div class="item-cardapio">
+                        <img class="image-food"
+                            src="https://i.pinimg.com/736x/79/6c/34/796c34906c9111f02f41a319298a261b.jpg" alt=""
+                            srcset="">
+                        <div class="info-food">
+                            <h3>Nome do Prato</h3>
+                            <p>Descrição do prato</p>
+                            <p>Preço: R$ 20,00</p>
+                        </div>
+                        <div class="nota">5.0</div>
                     </div>
-                    <div class="nota">5.0</div>
                 </div>
             </div>
-        </div>
 
-        <div class="food">
-            <h2 class="tipo-da-comida">Sobremesas</h2>
-            <div class="grupo-item-cardapio">
-                <div class="item-cardapio">
-                    <img class="image-food" src="https://i.pinimg.com/736x/f4/ce/e5/f4cee5e7149731cc9dd440115a194fbf.jpg" alt="" srcset="">
-                    <div class="info-food">
-                        <h3>Nome do Prato</h3>
-                        <p>Descrição do prato</p>
-                        <p>Preço: R$ 20,00</p>
+            <div class="food">
+                <h2 class="tipo-da-comida">Sobremesas</h2>
+                <div class="grupo-item-cardapio">
+                    <div class="item-cardapio">
+                        <img class="image-food"
+                            src="https://i.pinimg.com/736x/f4/ce/e5/f4cee5e7149731cc9dd440115a194fbf.jpg" alt=""
+                            srcset="">
+                        <div class="info-food">
+                            <h3>Nome do Prato</h3>
+                            <p>Descrição do prato</p>
+                            <p>Preço: R$ 20,00</p>
+                        </div>
+                        <div class="nota">5.0</div>
                     </div>
-                    <div class="nota">5.0</div>
-                </div>
-                <div class="item-cardapio">
-                    <img class="image-food" src="https://i.pinimg.com/736x/f4/ce/e5/f4cee5e7149731cc9dd440115a194fbf.jpg" alt="" srcset="">
-                    <div class="info-food">
-                        <h3>Nome do Prato</h3>
-                        <p>Descrição do prato</p>
-                        <p>Preço: R$ 20,00</p>
+                    <div class="item-cardapio">
+                        <img class="image-food"
+                            src="https://i.pinimg.com/736x/f4/ce/e5/f4cee5e7149731cc9dd440115a194fbf.jpg" alt=""
+                            srcset="">
+                        <div class="info-food">
+                            <h3>Nome do Prato</h3>
+                            <p>Descrição do prato</p>
+                            <p>Preço: R$ 20,00</p>
+                        </div>
+                        <div class="nota">5.0</div>
                     </div>
-                    <div class="nota">5.0</div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-
+ 
 </body>
 <script src="../js/cardapio/pratoPrincipal.js"></script>
-<script src="../js/cardapio/bebidas.js"></script>
+<script src="../js/darkMode.js"></script>
+<script src="../js/navBar.js"></script>
+
 </html>

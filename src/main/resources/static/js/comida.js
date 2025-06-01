@@ -46,7 +46,7 @@ fetch(`http://localhost:3000/${paramsComida}/${id}`)
         comprarButton.addEventListener('click', () => {
             // Aqui você pode adicionar a lógica para adicionar a comida ao carrinho
             alert(`Você comprou ${comida.nome}!`);
-            window.location.href = `./carrinho.html?${paramsComida}=${comida.id}`; // Redireciona para a página do carrinho
+            window.location.href = `./pedido.html?${paramsComida}=${comida.id}`; // Redireciona para a página do carrinho
         });
         foodDiv.appendChild(comprarButton);
 

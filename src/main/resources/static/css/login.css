@@ -9,7 +9,7 @@
 }
 :root {
     --primary-color:#000000;
-    --secondary-color:#4CAF50;
+    --secondary-color: #47A8BD;
     --third-color:#ededed;
     --background-color:#ffffff;
     --font: 'code', sans-serif;
@@ -18,18 +18,9 @@
 
 .dark-mode {
     --primary-color: #ffffff;
-    --secondary-color: #4CAF50;
+    --secondary-color: #47A8BD;
     --third-color: #ffffff;
-    --background-color: linear-gradient(to left, #0a0716,
-    /* Deep Violet */
-    #000c19,
-    /* Electric Blue */
-    #002523,
-    /* Teal Glow */
-    #250025,
-    /* Dark Magenta */
-    #001c1c);
-    background-size: 400% 100%;
+    --background-color: #131B23;
 
 }
 
@@ -103,7 +94,7 @@ p {
     margin-top: 20px;
 }
 a {
-    color: #4CAF50;
+    color: var(--secondary-color);
     text-decoration: none;
     font-weight: bold;
 }

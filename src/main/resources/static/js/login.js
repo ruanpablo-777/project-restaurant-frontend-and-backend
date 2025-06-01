@@ -19,7 +19,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
         if (resposta.ok) {
             alert("Login realizado com sucesso!");
             // Redirecionar para outra página
-            window.location.href = "../src/main/resources/static/pages/restaurante.html";
+            window.location.href = "./pages/restaurante.html";
         } else {
             alert("Erro: " + resultado);
         }
