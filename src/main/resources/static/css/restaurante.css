@@ -10,8 +10,8 @@
 
 :root {
     --primary-color:#000000;
-    --secondary-color:#4CAF50;
-    --third-color:#ffffff;
+    --secondary-color:#47A8BD;
+    --third-color:#EAF0CE;
     --forth-color:rgb(107, 107, 107);
     --background-color:#ffffff;
     --font: 'code', sans-serif;
@@ -20,19 +20,11 @@
     
 }
 .dark-mode {
-    --primary-color: #ffffff;
-    --secondary-color: #4CAF50;
+    --primary-color: #EAF0CE;
+    --secondary-color: #47A8BD;
     --third-color: #000000;
-    --background-color: linear-gradient(to left, #071608,
-    /* Deep Violet */
-    #001903,
-    /* Electric Blue */
-    #002523,
-    /* Teal Glow */
-    #00250a,
-    /* Dark Magenta */
-    #001c1c);
-    background-size: 400% 100%;
+    --background-color: #131B23;
+    --bacground-color-itens: #ffff;
 
 }
 
@@ -42,13 +34,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100vw;
     
 }
 
 
+
 .image-food {
     width: 168px;
+    height: 150px;
     border-radius: 10px;
 }
 
@@ -80,6 +75,13 @@ a {
     padding: 10px;
 
 }
+
+.food {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
 .grupo-item-cardapio {
     display: flex;
     gap: 20px;
@@ -88,9 +90,10 @@ a {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-bottom: 20px;
+    
+    margin: 0px 10px 10px 10px;
     padding: 10px;
-    border-radius: 10px;
+    border-bottom: 1px solid var(--bacground-color-itens);
     
 
 }
@@ -123,9 +126,6 @@ a {
 
 
 .switch-theme {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     background-color: var(--primary-color);
     border: none;
     border-radius: 50%;
@@ -134,6 +134,7 @@ a {
     cursor: pointer;
     color: var(--third-color);
     transition: background-color 0.3s ease;
+    z-index: 1000;
 }
 
 @media screen and (max-width: 768px) {

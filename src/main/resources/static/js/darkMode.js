@@ -1,4 +1,4 @@
-l
+
 
 // Ao carregar a página, verifica se estava no modo escuro
 window.onload = () => {

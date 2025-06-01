@@ -3,12 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/navBar.css">
     <link rel="stylesheet" href="../css/carrinho.css">
     <title>Carrinho</title>
 </head>
 <body>
+    <nav class="navbar">
+    <div class="logo">
+        <a href="#">printf(food.exe)</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Cardápio ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#pratos">Pratos</a></li>
+                <li><a href="#bebidas">Bebidas</a></li>
+                <li><a href="#sobremesas">Sobremesas</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Carrinho 🛒</a></li>
+        <li><a href="./perfilDoUsuario.html">Perfil 👤</a></li>
+    </ul>
+    <button class="switch-theme" onclick="toggleDarkMode()">🌙</button>
+</nav>
+
+    <button class="switch-theme" onclick="toggleDarkMode()"></button>
+
     <a class="home" href="restaurante.html">
-        <h1 class="name-carrinho">Nome do Restaurante</h1>
+        <h1 class="name-carrinho">printf(food.exe)</h1>
     </a>
     <div class="box-carrinho-container">
         <div class="carrinho-container">
@@ -36,18 +60,21 @@
             </p>
             <div class="sub-price">
                 <p>Subtotal</p>
-                <p>R$ 20,00</p>
+                <p class="subtotal">R$ 20,00</p>
             </div>
             <div class="taxa-de-entrega">
                 <p>Taxa de entrega</p>
-                <p>11,59</p>
+                <p class="taxa">11,59</p>
             </div>
             <div class="total">
                 <p>Total</p>
-                <p>31,59</p>
+                <p class="total-pedido">31,59</p>
             </div>
         </div>
     </div>
     
 </body>
+<script src="../js/carrinho.js"></script>
+<script src="../js/darkMode.js"></script>
+
 </html>

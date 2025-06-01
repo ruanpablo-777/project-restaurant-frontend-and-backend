@@ -17,9 +17,19 @@
 
     
 }
+.dark-mode {
+    --primary-color: #EAF0CE;
+    --secondary-color: #47A8BD;
+    --third-color: #000000;
+    --background-color: #131B23;
+    --font: 'code', sans-serif;
+
+}
 
 body{
     font-family: Arial, sans-serif;
+        background: var(--background-color);
+    background-size: 400% 100%;
 }
 .home {
     text-decoration: none;
@@ -28,7 +38,9 @@ body{
 h1 {
     text-align: center;
     font-weight: 500;
+    font-size: 25px;
     margin-top: 20px;
+    font-family: "code", sans-serif;
 }
 
 .box-carrinho-container {
@@ -43,30 +55,38 @@ h1 {
 
 h2 {
     margin-bottom: 60px;
+    color: var(--secondary-color);
 }
 
 .entrega {
     margin-bottom: 30px;
     width: 70px;
     border-bottom: 3px solid var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .adress {
     margin-bottom: 20px;
+    color: var(--primary-color);
 }
 
 .street {
-
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    text-transform: capitalize;
 }
 .city {
-    color: var(--forth-color);
+    color: var(--primary-color);
     font-size: 12px;
     margin-bottom: 30px;
+    text-transform: capitalize;
 }
 
 .time-to-delivery {
     font-weight: 500;
     margin-bottom: 10px;
+    color: var(--primary-color);
 }
 
 .time-and-price {
@@ -74,57 +94,62 @@ h2 {
     border-radius: 5px;
     padding: 10px;
 
+
     & .parttens {
         color: var(--secondary-color);
         font-size: 13px;
         margin-bottom: 5px;
     }
     & .delivery {
-        color: var(--forth-color);
+        color: var(--primary-color);
         font-size: 13px;
         margin-bottom: 5px;
     }
     & .price {
         font-weight: 100;
         font-size: 14px;
+        color: var(--primary-color);
     }
 }
 
 .pedido-container {
     padding: 20px;
     width: 300px;
+    color: var(--secondary-color);
 }
 .your-pedido {
     margin-top: 30px;
     margin-bottom: 10px;
-    color:var(--forth-color);
+    color:var(--secondary-color);
     font-size: 13px;
     font-weight: 100;
-    width: 100vw;
 }
 
 .pedido {
     font-weight: 500;
     margin-bottom: 30px;
+    color: var(--primary-color);
 }
 
 .sub-price {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    color: var(--primary-color);
 }
 
 .taxa-de-entrega {
     display: flex;
     justify-content: space-between;
         margin-bottom: 20px;
+        color: var(--primary-color);
 
 }
 .total {
     display: flex;
     justify-content: space-between;
         margin-bottom: 20px;
-
+    color: var(--primary-color);
 }
 
 
@@ -137,4 +162,18 @@ h2 {
         width: 100vw;
     }
     
+}
+
+.switch-theme {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: var(--third-color);
+    transition: background-color 0.3s ease;
 }
