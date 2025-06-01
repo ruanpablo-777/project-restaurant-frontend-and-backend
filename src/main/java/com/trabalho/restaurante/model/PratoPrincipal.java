@@ -1,17 +1,34 @@
 package com.trabalho.restaurante.model;
 
-public class PratoPrincipal extends Comida {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-    public PratoPrincipal(int id, String nome, String descricao, double preco, String tipo, String imagens) {
-        super(id, nome, descricao, preco, tipo, imagens);
+
+@Getter
+@Setter
+public class PratoPrincipal extends Pratos{
+    private String acompanhamento;
+    private boolean isVegan;
+    private String imagens;
+    private double avaliacao;
+
+
+    public PratoPrincipal(int id, String nome, double preco, String acompanhamento, boolean isVegan, String imagens, double avaliacao) {
+        super(id, nome, preco);
+        this.acompanhamento = acompanhamento;
+        this.isVegan = isVegan;
+        this.imagens = imagens;
+        this.avaliacao = avaliacao;
+
     }
 
-    public PratoPrincipal(String nome, String descricao, double preco, String tipo, String imagens) {
-        super(0,nome, descricao, preco, tipo, imagens);
-    }
+    public PratoPrincipal(String nome, double preco, String acompanhamento, boolean isVegan, String imagens, double avaliacao) {
+        super(nome, preco);
+        this.acompanhamento = acompanhamento;
+        this.isVegan = isVegan;
+        this.imagens = imagens;
+        this.avaliacao = avaliacao;
 
-    @Override
-    public void mostrarDetalhes() {
-        System.out.println("Prato Principal: " + nome + " - " + descricao + " - R$" + preco);
     }
 }

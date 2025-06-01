@@ -1,24 +1,22 @@
-package com.trabalho.restaurante.controller;
-
-import com.trabalho.restaurante.model.db.ComidaDAO;
-import com.trabalho.restaurante.model.Comida;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/api")
-public class ComidaController {
-
-    @GetMapping("/cardapio")
-    public List<Comida> listarComidas() {
-        ComidaDAO dao = new ComidaDAO();
-        return dao.listarTodas();
-    }
-
-    @GetMapping("/comidas/{id}")
-    public  Comida buscarPorId(@PathVariable int id) {
-        ComidaDAO dao = new ComidaDAO();
-        return dao.buascarPorId(id);
-    }
-}
+//package com.trabalho.restaurante.controller;
+//
+//import org.springframework.web.bind.annotation.*;
+//
+//import java.util.List;
+//
+//@RestController
+//@RequestMapping("/api")
+//public class ComidaController {
+//
+//    @GetMapping("/cardapio")
+//    public ListComida> listarComidas() {
+//        ComidaDAO dao = new ComidaDAO();
+//        return dao.listarTodas();
+//    }
+//
+//    @GetMapping("/comidas/{id}")
+//    public  Comida buscarPorId(@PathVariable int id) {
+//        ComidaDAO dao = new ComidaDAO();
+//        return dao.buascarPorId(id);
+//    }
+//}

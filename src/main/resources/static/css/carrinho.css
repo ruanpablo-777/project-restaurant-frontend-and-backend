@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+@font-face {
+    font-family: 'code';
+    src: url(../assets/Monocode-Regular-V01.02b.ttf) format('truetype');
+}
 
 :root {
     --primary-color:#000000;
