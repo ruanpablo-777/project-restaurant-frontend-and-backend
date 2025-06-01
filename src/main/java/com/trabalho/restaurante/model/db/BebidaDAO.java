@@ -47,8 +47,9 @@ public class BebidaDAO {
             boolean isAcoolica = resultado.getBoolean("isAlcoolica");
             String volume = resultado.getString("volume");
             String imagens = resultado.getString("imagens");
+            double avaliacao = resultado.getDouble("avaliacao");
 
-            return new Bebida(id, nome, preco, isAcoolica, volume, imagens);
+            return new Bebida(id, nome, preco, isAcoolica, volume, imagens, avaliacao);
         } else {
             return null;
         }
@@ -68,7 +69,9 @@ public class BebidaDAO {
             boolean isAlcoolica = resultado.getBoolean("isAlcoolica");
             String volume = resultado.getString("volume");
             String imagens = resultado.getString("imagens");
-            Bebida bebida =  new Bebida(id, nome, preco, isAlcoolica, volume, imagens);
+            double avaliacao = resultado.getDouble("avaliacao");
+
+            Bebida bebida =  new Bebida(id, nome, preco, isAlcoolica, volume, imagens, avaliacao);
             listaBebida.add(bebida);
         }
         return listaBebida;

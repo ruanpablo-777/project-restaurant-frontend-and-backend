@@ -48,7 +48,9 @@ public class PPrincipalDAO {
             String acompanhamento = resultado.getString("acompanhamento");
             boolean isVegan = resultado.getBoolean("isvegan");
             String imagens = resultado.getString("imagens");
-            return new PratoPrincipal(id, nome, preco, acompanhamento, isVegan, imagens);
+            double avaliacao = resultado.getDouble("avaliacao");
+
+            return new PratoPrincipal(id, nome, preco, acompanhamento, isVegan, imagens, avaliacao);
         } else {
             return null;
         }
@@ -68,7 +70,9 @@ public class PPrincipalDAO {
             String acompanhamento = resultado.getString("acompanhamento");
             boolean isvegan = resultado.getBoolean("isVegan");
             String imagens = resultado.getString("imagens");
-            PratoPrincipal pratoPrincipal =  new PratoPrincipal( id, nome, preco, acompanhamento, isvegan, imagens);
+            double avaliacao = resultado.getDouble("avaliacao");
+
+            PratoPrincipal pratoPrincipal =  new PratoPrincipal( id, nome, preco, acompanhamento, isvegan, imagens, avaliacao);
             listaPratoPrincipal.add(pratoPrincipal);
         }
         return listaPratoPrincipal;

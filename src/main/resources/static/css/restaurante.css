@@ -144,6 +144,18 @@ a {
         flex-direction: column;
         align-items: center;
     }
+     .Pratos {
+        flex-direction: column;
+        align-items: center;
+    }
+     .Bebidas {
+        flex-direction: column;
+        align-items: center;
+    }
+    .Sobremesas {
+        flex-direction: column;
+        align-items: center;
+    }
     .item-cardapio {
         display: flex;
         width: 100vw;

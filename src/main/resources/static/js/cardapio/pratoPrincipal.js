@@ -39,6 +39,7 @@ async function carregarCardapioCompleto() {
 
                 const grupoItemCardapio = document.createElement('div');
                 grupoItemCardapio.classList.add(tipo);
+                grupoItemCardapio.style.display = 'flex';
                 
 
                 grupoItens.forEach(item => {
@@ -70,7 +71,7 @@ async function carregarCardapioCompleto() {
 
                     const nota = document.createElement('div');
                     nota.classList.add('nota');
-                    nota.textContent = item.nota || '5.0';
+                    nota.textContent = item.avaliacao || '5.0';
                     itemCardapio.appendChild(nota);
 
                     const linkItem = document.createElement('a');

@@ -1,10 +1,11 @@
-
-
 const urlParams = new URLSearchParams(window.location.search);
-const comidaId = urlParams.get('id');
-console.log(comidaId);
+console.log(urlParams.toString()); // Verifica os parâmetros da URL
+const paramsComida = urlParams.toString().split('=')[0]; // Extrai o ID da comida da URL
+const id = urlParams.toString().split('=')[1]; // Extrai o ID da comida da URL
+console.log(paramsComida)
+console.log(id)
 
-fetch(`http://localhost:3000/api/comidas/${comidaId}`)
+fetch(`http://localhost:3000/${paramsComida}/${id}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Erro ao buscar a comida.')
@@ -39,7 +40,7 @@ fetch(`http://localhost:3000/api/comidas/${comidaId}`)
         console.error('Erro ao buscar a comida:', error)
     })
 
-fetch("http://localhost:3000/cliente/comprar", {
+fetch("http://localhost:3000/comprar", {
     method: "POST",
     credentials: "include", // Inclui cookies na requisição
 })

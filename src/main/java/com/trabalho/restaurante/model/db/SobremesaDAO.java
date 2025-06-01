@@ -47,7 +47,9 @@ public class SobremesaDAO {
             boolean temacucar = resultado.getBoolean("temAcucar");
             double peso = resultado.getDouble("peso");
             String imagens = resultado.getString("imagens");
-            return new Sobremesa(id, nome, preco, temacucar, peso, imagens);
+            double avaliacao = resultado.getDouble("avaliacao");
+
+            return new Sobremesa(id, nome, preco, temacucar, peso, imagens, avaliacao);
         } else {
             return null;
         }
@@ -67,7 +69,9 @@ public class SobremesaDAO {
             boolean temacucar = resultado.getBoolean("temAcucar");
             double peso = resultado.getDouble("peso");
             String imgens = resultado.getString("imagens");
-            Sobremesa sobremesa =  new Sobremesa(id, nome, preco, temacucar ,peso  , imgens);
+            double avaliacao = resultado.getDouble("avaliacao");
+
+            Sobremesa sobremesa =  new Sobremesa(id, nome, preco, temacucar ,peso  , imgens, avaliacao);
             listaSobremesas.add(sobremesa);
         }
         return listaSobremesas;

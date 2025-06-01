@@ -48,7 +48,7 @@ public class ClienteDAO  {
             int idade = resultado.getInt("idade");
             String email = resultado.getString("email");
             String senha = resultado.getString("senha");
-            int idEndereco = resultado.getInt("endereco");
+            int idEndereco = resultado.getInt("endereco_id");
 
             Endereco endereco = enderecoDAO.selecionar(idEndereco);
             return new Cliente(id, nome, idade, email, senha,  endereco);
