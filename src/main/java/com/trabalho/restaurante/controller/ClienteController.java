@@ -123,6 +123,48 @@ public class ClienteController {
         }
     }
 
+    @PostMapping("/perfildousuario")
+    public ResponseEntity<?> perfilDoUsuario(HttpSession session) {
+        int clienteId = (int) session.getAttribute("clienteId");
+
+        if (clienteId == -1) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "status", "error",
+                    "message", "Usuário não está logado"
+            ));
+        }
+
+        try {
+            ClienteDAO dao = new ClienteDAO();
+            EnderecoDAO enderecoDAO = new EnderecoDAO();
+            Endereco endereco = enderecoDAO.selecionar(dao.selecionarID(clienteId).getEndereco().getId());
+            Cliente cliente = dao.selecionarID(clienteId);
+
+            if (endereco == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                        "status", "error",
+                        "message", "Endereço não encontrado"
+                ));
+            }
+
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "message", "Compra realizada com sucesso",
+                    "enderecoEntrega", endereco,
+                    "perfilDoUsuario", cliente
+
+            ));
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "Erro no servidor: " + e.getMessage()
+            ));
+        }
+    }
+
+
 
     // 🔸 Logout
     @PostMapping("/logout")

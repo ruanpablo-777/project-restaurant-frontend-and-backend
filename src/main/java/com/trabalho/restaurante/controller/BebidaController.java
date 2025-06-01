@@ -26,4 +26,6 @@ public class BebidaController {
         Bebida pegarBebida = bebidaDAO.selecionarById(id);
         return pegarBebida;
     }
+
+
 }
