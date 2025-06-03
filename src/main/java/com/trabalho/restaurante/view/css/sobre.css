@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'code';
+    src: url(../assets/Monocode-Regular-V01.02b.ttf) format('truetype');
+}
+
+:root {
+    --primary-color:#000000;
+    --secondary-color:#47A8BD;
+    --third-color:#EAF0CE;
+    --forth-color:rgb(107, 107, 107);
+    --background-color:#ffffff;
+    --font: 'code', sans-serif;
+
+
+    
+}
+.dark-mode {
+    --primary-color: #EAF0CE;
+    --secondary-color: #47A8BD;
+    --third-color: #000000;
+    --background-color: #131B23;
+    --bacground-color-itens: #ffff;
+
+}
+
+/* Seção Sobre */
+
+body {
+  width: 100vw;
+  background-color: var(--background-color);
+  font-family: var(--font);
+}
+.sobre {
+  padding: 60px 20px;
+  margin: 100px 0px 10px 0px;
+}
+
+.sobre .container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sobre h2 {
+  font-size: 2.5em;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  border-bottom: 3px solid var(--secondary-color);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.sobre p {
+  font-size: 1.1em;
+  color: var(--forth-color);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.sobre strong {
+  color: var(--secondary-color);
+}
+
+
+footer {
+  
+    text-align: center;
+    padding: 10px;
+    color: var(--forth-color);
+    background-color: transparent;
+}

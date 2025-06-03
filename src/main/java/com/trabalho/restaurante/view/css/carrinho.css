@@ -46,7 +46,7 @@ h1 {
 .box-carrinho-container {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 70px;
 }
 
 .carrinho-container {

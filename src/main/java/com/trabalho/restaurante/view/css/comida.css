@@ -5,7 +5,7 @@
 
 :root {
     --primary-color: #000000;
-    --secondary-color: #4CAF50;
+    --secondary-color: #47A8BD;
     --third-color: #ffffff;
     --forth-color: rgb(107, 107, 107);
     --background-color: #ffffff;
@@ -14,7 +14,7 @@
 
 body.dark-mode {
     --primary-color: #ffffff;
-    --secondary-color: #4CAF50;
+    --secondary-color: #47A8BD;
     --third-color: #000000;
     --forth-color: rgb(200, 200, 200);
     --background-color: #131B23;
@@ -49,6 +49,7 @@ header .home {
 
 .box-comida-container {
     padding: 20px;
+    margin-top: 60px;
 }
 
 .comida-container {
@@ -131,7 +132,7 @@ header .home {
 }
 
 .comprar-comida:hover {
-    background-color: #5dd661;
+    background-color: #5dbed6;
 }
 
 

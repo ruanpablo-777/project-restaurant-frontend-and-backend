@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/sobre.css">
+  <link rel="stylesheet" href="../css/navBar.css">
+  <title>Sobre</title>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+        <a href="./restaurante.html">printf(food.exe)</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+  </div>
+
+    <ul class="nav-links">
+        <li><a href="./restaurante.html">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Cardápio ▾</a>
+            <ul class="dropdown-menu">
+                <li><a  href="#Bebidas">Bebidas</a></li>
+                <li><a  href="#Pratos">Pratos</a></li>
+                <li><a  href="#Sobremesas">Sobremesas</a></li>
+            </ul>
+        </li>
+        <li><a href="./sobre.html">Sobre</a></li>
+        <li><a href="#">Carrinho 🛒</a></li>
+        <li><a href="perfilDoUsuario.html">Perfil 👤</a></li>
+    </ul>
+    <button class="switch-theme" onclick="toggleDarkMode()">🌙</button>
+</nav>
+
+
+  <section class="sobre" id="sobre">
+  <div class="container">
+    <h2>Sobre Nós</h2>
+    <p>
+      Bem-vindo ao <strong>printf(food.exe)</strong>, um restaurante que une sabor, praticidade e uma pitada de tecnologia! 
+      Nossa missão é oferecer pratos deliciosos, feitos com ingredientes selecionados, que agradam todos os gostos — dos mais simples aos mais sofisticados.
+    </p>
+    <p>
+      Nosso cardápio é pensado para proporcionar uma experiência completa, com opções de pratos, bebidas e sobremesas, tudo com preços acessíveis e qualidade garantida.
+    </p>
+    <p>
+      Se você ama boa comida e um ambiente descontraído, seja muito bem-vindo. No <strong>printf(food.exe)</strong>, comer bem faz parte do nosso código.
+    </p>
+  </div>
+</section>
+
+   <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 printf(food.exe). Todos os direitos reservados.</p>
+    </footer>
+  
+</body>
+<script src="../js/navBar.js"></script>
+<script src="../js/darkMode.js"></script>
+</html>
