@@ -1,6 +1,26 @@
 @font-face {
-    font-family: 'code';
-    src: url(../assets/Monocode-Regular-V01.02b.ttf) format('truetype');
+    font-family: 'ifood';
+    src: url(../assets/font/iFoodRCTextos-Bold.eot)
+    
+    format('truetype');
+}
+
+:root {
+    --primary-color: #000000;
+    --secondary-color: #4CAF50;
+    --third-color: #ffffff;
+    --forth-color: rgb(107, 107, 107);
+    --background-color: #ffffff;
+    --font: 'ifood', sans-serif;
+}
+
+.dark-mode {
+    --primary-color: #EAF0CE;
+    --secondary-color: #47A8BD;
+    --third-color: #000000;
+    --background-color: #131B23;
+    --bacground-color-itens: #ffff;
+
 }
 
 /* Navbar */
@@ -10,16 +30,16 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    color: white;
+    color: var(--primary-color);
     position: relative;
     z-index: 1000;
 }
 
 .navbar .logo a {
-    color: white;
+    color: var(--primary-color);
     font-size: 1.5rem;
     text-decoration: none;
-    font-family: 'code', sans-serif;
+    font-family: 'ifood', sans-serif;
     font-weight: bold;
 }
 
@@ -35,7 +55,7 @@
 }
 
 .nav-links a {
-    color: white;
+    color: var(--primary-color);
     text-decoration: none;
     padding: 8px 12px;
     border-radius: 5px;
@@ -44,6 +64,8 @@
 
 .nav-links a:hover {
     background-color: #444;
+}
+.hamburger {
 }
 
 /* Dropdown */
@@ -74,6 +96,7 @@
 /* Botão de tema */
 .switch-theme {
     background: #444;
+    height: 40px;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -92,12 +115,13 @@
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    top: 300px;
 }
 
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: white;
+    background: var(--primary-color);
     border-radius: 5px;
 }
 

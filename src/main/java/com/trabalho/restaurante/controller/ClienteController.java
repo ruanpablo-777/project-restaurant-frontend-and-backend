@@ -164,6 +164,84 @@ public class ClienteController {
         }
     }
 
+    @PostMapping("/editarperfil")
+    public ResponseEntity<?> editarPerfil(HttpSession session, @RequestBody Cliente cliente) {
+        int clienteId = (int) session.getAttribute("clienteId");
+
+        if (clienteId == -1) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "status", "error",
+                    "message", "Usuário não está logado"
+            ));
+        }
+
+        try {
+            ClienteDAO dao = new ClienteDAO();
+
+            Cliente clienteEditar = dao.atualizar(cliente,clienteId);
+
+            if (cliente == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                        "status", "error",
+                        "message", "Endereço não encontrado"
+                ));
+            }
+
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "message", "Compra realizada com sucesso",
+                    "perfilDoUsuario", clienteEditar
+
+            ));
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "Erro no servidor: " + e.getMessage()
+            ));
+        }
+    }
+
+    @DeleteMapping("/deletarperfil")
+    public ResponseEntity<?> deletarPerfil(HttpSession session) {
+        int clienteId = (int) session.getAttribute("clienteId");
+
+        if (clienteId == -1) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "status", "error",
+                    "message", "Usuário não está logado"
+            ));
+        }
+
+        try {
+            ClienteDAO dao = new ClienteDAO();
+
+            boolean clienteDeletar = dao.deletar(clienteId);
+
+            if (!clienteDeletar) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                        "status", "error",
+                        "message", "Usuario não encontrado"
+                ));
+            }
+            session.invalidate();
+
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "message", "usuario deletado com sucesso",
+                    "perfilDoUsuario", clienteDeletar
+
+            ));
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "Erro no servidor: " + e.getMessage()
+            ));
+        }
+    }
 
 
     // 🔸 Logout

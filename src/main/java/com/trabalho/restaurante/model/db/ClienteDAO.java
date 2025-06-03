@@ -81,37 +81,35 @@ public class ClienteDAO  {
 
 
 
-//    public boolean atualizar(Endereco endereco) throws SQLException {
-//        String sql = "UPDATE endereco SET rua = ?, numero = ?, cep = ?, cidade = ?, estado = ? WHERE id = ?";
-//        PreparedStatement stmt = conexao.prepareStatement(sql);
-//
-//        stmt.setString(1, endereco.getRua());
-//        stmt.setInt(2, endereco.getNumero());
-//        stmt.setString(3, endereco.getCep());
-//        stmt.setString(4, endereco.getCidade());
-//        stmt.setString(5, endereco.getEstado());
-//        stmt.setInt(6, endereco.getId());
-//
-//        int linhasAfetadas = stmt.executeUpdate();
-//
-//        if (linhasAfetadas > 0) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+    public Cliente atualizar(Cliente cliente, int id) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE cliente SET nome = ?, email = ?, idade = ? WHERE id = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
 
-//    public boolean deletar(Endereco endereco) throws SQLException {
-//        String sql = "DELETE FROM endereco WHERE id = ?";
-//        PreparedStatement stmt = conexao.prepareStatement(sql);
-//
-//        stmt.setInt(1, endereco.getId());
-//
-//        int linhasAfetadas = stmt.executeUpdate();
-//        if (linhasAfetadas > 0) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+        stmt.setInt(4,id);
+        stmt.setString(1, cliente.getNome());
+        stmt.setString(2, cliente.getEmail());
+        stmt.setInt(3, cliente.getIdade());
+
+
+        int linhasAfetadas = stmt.executeUpdate();
+
+        ClienteDAO clienteDAO = new ClienteDAO();
+        Cliente cliente1 = clienteDAO.selecionarID(id);
+
+        return cliente1;
+    }
+
+    public boolean deletar(int id) throws SQLException {
+        String sql = "DELETE FROM cliente WHERE id = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+
+        stmt.setInt(1, id);
+
+        int linhasAfetadas = stmt.executeUpdate();
+        if (linhasAfetadas > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -1,4 +1,4 @@
-#CRIAÇÃO DO BANCO DE DADOS
+# CRIAÇÃO DO BANCO DE DADOS
 -- Criar o banco de dados
 CREATE DATABASE testeendereco;
 USE testeendereco;

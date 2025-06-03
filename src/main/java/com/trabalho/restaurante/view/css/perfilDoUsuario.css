@@ -5,8 +5,8 @@
 }
 
 @font-face {
-    font-family: 'code';
-    src: url(../assets/Monocode-Regular-V01.02b.ttf) format('truetype');
+    font-family: 'ifood';
+    src: url(../assets/font/iFoodRCTextos-Medium.ttf) format('truetype');
 }
 
 :root {
@@ -15,7 +15,7 @@
     --third-color:#EAF0CE;
     --forth-color:rgb(107, 107, 107);
     --background-color:#ffffff;
-    --font: 'code', sans-serif;
+    --font: 'ifood', sans-serif;
 }
 
 .dark-mode {
@@ -40,7 +40,6 @@ body {
 
 /* Botão de tema */
 .switch-theme {
-    position: absolute;
     top: 20px;
     right: 20px;
     background-color: var(--primary-color);
@@ -51,7 +50,6 @@ body {
     cursor: pointer;
     color: var(--third-color);
     transition: background-color 0.3s ease;
-    z-index: 1000;
 }
 
 .switch-theme:hover {
@@ -134,6 +132,27 @@ body {
 .profile-buttons button:hover {
     background-color: #3a94a5;
 }
+
+#editando-perfil {
+    top: 150px;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    
+    margin: 30px;
+
+    & input {
+        width: 300px;
+        border-radius: 10px;
+        height: 40px;
+        margin-bottom: 20px;
+        padding: 10px;
+        outline: none;
+        border: none;
+    }
+}
+
 
 /* Responsivo */
 @media screen and (max-width: 500px) {

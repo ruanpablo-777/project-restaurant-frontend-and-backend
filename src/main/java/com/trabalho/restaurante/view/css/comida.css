@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'code';
-    src: url(../assets/Monocode-Regular-V01.02b.ttf) format('truetype');
+    font-family: 'ifood';
+    src: url(../assets/font/iFoodRCTextos-Bold.ttf) format('truetype');
 }
 
 :root {
@@ -9,7 +9,7 @@
     --third-color: #ffffff;
     --forth-color: rgb(107, 107, 107);
     --background-color: #ffffff;
-    --font: 'code', sans-serif;
+    --font: 'ifood', sans-serif;
 }
 
 body.dark-mode {
@@ -134,20 +134,7 @@ header .home {
     background-color: #5dd661;
 }
 
-.switch-theme {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: var(--primary-color);
-    color: var(--third-color);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    z-index: 1000;
-}
+
 
 footer {
     text-align: center;

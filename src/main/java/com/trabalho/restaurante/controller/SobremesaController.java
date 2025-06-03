@@ -1,6 +1,8 @@
 package com.trabalho.restaurante.controller;
 
+import com.trabalho.restaurante.model.Bebida;
 import com.trabalho.restaurante.model.Sobremesa;
+import com.trabalho.restaurante.model.db.BebidaDAO;
 import com.trabalho.restaurante.model.db.SobremesaDAO;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +13,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class SobremesaController {
     @GetMapping("/sobremesa")
     public List<Sobremesa> enviasobremesa() throws SQLException, ClassNotFoundException {
@@ -26,5 +27,13 @@ public class SobremesaController {
         SobremesaDAO sobremesaDAO = new SobremesaDAO();
         Sobremesa pegarSobremesa = sobremesaDAO.selecionarById(id);
         return pegarSobremesa;
+    }
+
+    @GetMapping("/Sobremesas/descricao/{id}")
+    public String pegarDescricaoPorId(@PathVariable int id) throws SQLException,ClassNotFoundException {
+        SobremesaDAO sobremesaDAO = new SobremesaDAO();
+        Sobremesa pegarSobremesa = sobremesaDAO.selecionarById(id);
+        String descricao = pegarSobremesa.descricao();
+        return descricao;
     }
 }

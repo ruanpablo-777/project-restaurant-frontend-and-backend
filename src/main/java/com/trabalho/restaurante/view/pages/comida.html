@@ -11,31 +11,37 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#">printf(food.exe)</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li class="dropdown">
-                <a href="#">Cardápio ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#pratos">Pratos</a></li>
-                    <li><a href="#bebidas">Bebidas</a></li>
-                    <li><a href="#sobremesas">Sobremesas</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Carrinho 🛒</a></li>
-            <li><a href="./perfilDoUsuario.html">Perfil 👤</a></li>
-        </ul>
-        <button class="switch-theme" onclick="toggleDarkMode()">🌙</button>
-    </nav>
+ <nav class="navbar">
+    <div class="logo">
+        <a href="#">printf(food.exe)</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+  </div>
+
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Cardápio ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#pratos">Pratos</a></li>
+                <li><a href="#bebidas">Bebidas</a></li>
+                <li><a href="#sobremesas">Sobremesas</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Carrinho 🛒</a></li>
+        <li><a href="perfilDoUsuario.html">Perfil 👤</a></li>
+    </ul>
+    <button class="switch-theme" onclick="toggleDarkMode()">🌙</button>
+</nav>
 
     <!-- Cabeçalho -->
     <header>
         <a class="home" href="restaurante.html">
-            <h1 class="nome-restaurante">printf(food.exe)</h1>
+          
         </a>
     </header>
 
@@ -55,7 +61,7 @@
 
                     <article class="description">
                         <h3>Descrição</h3>
-                        <p>
+                        <p class="description-food">
                             Uma deliciosa combinação de ingredientes selecionados, preparada com carinho e dedicação. Perfeita para quem busca sabor e qualidade.
                         </p>
                     </article>
@@ -77,7 +83,7 @@
                             <p class="nota-food">Nota: ⭐⭐⭐⭐⭐ 5.0</p>
                         </div>
                         <div class="buy-food">
-                            <a href="carrinho.html">
+                            <a href="pedido.html">
                                 <button class="comprar-comida">Comprar</button>
                             </a>
                         </div>

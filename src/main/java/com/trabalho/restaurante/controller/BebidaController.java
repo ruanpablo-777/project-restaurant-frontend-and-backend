@@ -27,5 +27,11 @@ public class BebidaController {
         return pegarBebida;
     }
 
-
+    @GetMapping("/Bebidas/descricao/{id}")
+    public String pegarDescricaoPorId(@PathVariable int id) throws SQLException,ClassNotFoundException {
+        BebidaDAO bebidaDAO = new BebidaDAO();
+        Bebida pegarBebida = bebidaDAO.selecionarById(id);
+        String descricao = pegarBebida.descricao();
+        return descricao;
+    }
 }

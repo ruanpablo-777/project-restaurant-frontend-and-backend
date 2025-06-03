@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class EnderecoController {
     @GetMapping("/endereco")
     public ResponseEntity<?> buscarEndereco(HttpSession session) {

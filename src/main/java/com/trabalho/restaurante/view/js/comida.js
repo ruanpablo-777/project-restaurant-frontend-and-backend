@@ -18,16 +18,16 @@ fetch(`http://localhost:3000/${paramsComida}/${id}`)
         foodDiv.innerHTML = ''; // Limpar conteúdo existente
 
         const imagemDaComida = document.createElement('img');
-         imagemDaComida.classList.add('image-food');
-         imagemDaComida.src = comida.imagens;
+        imagemDaComida.classList.add('image-food');
+        imagemDaComida.src = comida.imagens;
         foodDiv.appendChild(imagemDaComida);
-        
+
         const nomeDaComida = document.createElement('div');
         nomeDaComida.classList.add('nome-food');
         nomeDaComida.textContent = comida.nome;
         foodDiv.appendChild(nomeDaComida);
-        
-        
+
+
         const descricaoDaComida = document.createElement('div');
         descricaoDaComida.classList.add('descricao-food');
         descricaoDaComida.textContent = comida.descricao;
@@ -38,7 +38,7 @@ fetch(`http://localhost:3000/${paramsComida}/${id}`)
         precoDaComida.textContent = `Preço: R$ ${comida.preco ? comida.preco.toFixed(2) : '0.00'}`;
         foodDiv.appendChild(precoDaComida);
 
-        
+
 
         const comprarButton = document.createElement('button');
         comprarButton.classList.add('comprar-comida');
@@ -50,7 +50,25 @@ fetch(`http://localhost:3000/${paramsComida}/${id}`)
         });
         foodDiv.appendChild(comprarButton);
 
-  
+        fetch(`http://localhost:3000/${paramsComida}/descricao/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar a bebida');
+                }
+                return response.text();
+               
+            })
+            .then(bebida => {
+                console.log(bebida)
+
+                const descricaoBebida = document.createElement('div');
+                descricaoBebida.classList.add('description-food');
+                descricaoBebida.textContent = bebida.toString(); // Adiciona a descrição da bebida
+
+                foodDiv.appendChild(descricaoBebida);
+
+            })
+
     })
     .catch(error => {
         console.error('Erro:', error);
