@@ -1,98 +1,189 @@
-# CRIAÇÃO DO BANCO DE DADOS
--- Criar o banco de dados
-CREATE DATABASE testeendereco;
-USE testeendereco;
 
--- Tabela endereco
-CREATE TABLE endereco (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    cep VARCHAR(10) NOT NULL,
-    cidade VARCHAR(100) NOT NULL,
-    bairro VARCHAR(100) NOT NULL,
-    rua VARCHAR(100) NOT NULL,
-    numero VARCHAR(10) NOT NULL
-);
+# Sistema de Gerenciamento de Restaurante
 
--- Tabela cliente
-CREATE TABLE cliente (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    idade INT NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    senha VARCHAR(100) NOT NULL,
-    endereco_id INT,
-    FOREIGN KEY (endereco_id) REFERENCES endereco(id)
-);
+##  Descrição do Projeto
 
--- Tabela bebida
-CREATE TABLE bebida (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    preco DECIMAL(10,2) NOT NULL,
-    isAcoolica BOOLEAN,         -- Da primeira query INSERT
-    volume VARCHAR(50),         -- Da primeira query INSERT
-    acompanhamento VARCHAR(100), -- Da segunda query INSERT
-    isVegan BOOLEAN              -- Da segunda query INSERT
-);
+Este projeto consiste no desenvolvimento de uma aplicação Java para o gerenciamento de um restaurante, abrangendo operações relacionadas a clientes, pedidos, pratos e bebidas. A arquitetura está baseada no padrão MVC (Model-View-Controller), utilizando Java e bibliotecas padrão para acesso e manipulação de dados.
 
--- Tabela pratoPrincipal
-CREATE TABLE pratoPrincipal (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    descricao VARCHAR(200),
-    preco DECIMAL(10,2) NOT NULL
-);
+A aplicação foi implementada com foco na modularização, extensibilidade e separação de responsabilidades, proporcionando facilidade na manutenção e evolução do sistema.
 
--- Tabela sobremesa
-CREATE TABLE sobremesa (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    descricao VARCHAR(200),
-    preco DECIMAL(10,2) NOT NULL
-);
+##  Tecnologias Utilizadas
 
--- Tabela restaurante
-CREATE TABLE restaurante (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    avaliacao DECIMAL(3,2) NOT NULL,  -- Avaliação como 4.5, 5.0, etc.
-    endereco_id INT,
-    FOREIGN KEY (endereco_id) REFERENCES endereco(id)
-);
+- Java 17
+- JDBC (Java Database Connectivity)
+- MySQL / PostgreSQL
+- Maven
+- Postman (para testes de API)
 
-CREATE TABLE comida (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    descricao VARCHAR(255),
-    preco DECIMAL(10,2) NOT NULL,
-    tipo ENUM('pratoPrincipal', 'bebida', 'sobremesa') NOT NULL,
-    isAlcoolica BOOLEAN DEFAULT NULL,     -- Só para bebidas
-    volume VARCHAR(50) DEFAULT NULL,       -- Só para bebidas
-    acompanhamento VARCHAR(100) DEFAULT NULL,  -- Opicional
-    isVegan BOOLEAN DEFAULT NULL           -- Opicional
-);
+##  Estrutura de Pacotes
 
-INSERT INTO comida (nome, descricao, preco, tipo, isAlcoolica, volume) VALUES
-('Cerveja', 'Cerveja gelada', 8.00, 'bebida', TRUE, '600ml'),
-('Bife Acebolado', 'Bife com cebola', 25.00, 'pratoPrincipal', NULL, NULL),
-('Pudim', 'Pudim de leite condensado', 10.00, 'sobremesa', NULL, NULL);
+com.trabalho.restaurante
+├── controller         → Camada de controle, gerenciamento de rotas e requisições.
+├── model              → Definição das entidades de negócio.
+├── model.db           → Implementação do acesso aos dados (DAO).
+└── RestauranteApplication.java → Classe principal para inicialização da aplicação.
 
-INSERT INTO comida (nome, descricao, preco, tipo, isAlcoolica, volume) VALUES
-('Suco', 'Suco de Laranja', 3.00, 'bebida', false, '500ml'),
-('Frango', 'Frango Empanado', 25.00, 'pratoPrincipal', NULL, NULL),
-('Açai', 'Açai com leite condensado e banana', 15.00, 'sobremesa', NULL, NULL);
+##  Mapeamento das Classes
 
-update comida
-set imagens = 'https://i.pinimg.com/736x/3d/7e/0e/3d7e0ef489331b95e653239334b12e9e.jpg'
-where id = 1;
+###  Model
 
-update comida
-set imagens = 'https://i.pinimg.com/736x/9e/c8/68/9ec86885e9dc5f96466a2b9228b87253.jpg'
-where id = 4;
+#### Bebida.java
+Representa uma bebida disponível no restaurante.
 
-update comida
-set imagens = 'https://i.pinimg.com/736x/bb/39/2a/bb392a7fa2c9cfc34146a171581501c1.jpg'
-where id = 6;
+**Atributos:**
+- `id`: identificador único.
+- `nome`: nome da bebida.
+- `preco`: valor unitário.
 
+#### Cliente.java
+Define as informações dos clientes.
 
-select * from comida;
+**Atributos:**
+- `id`: identificador único.
+- `nome`: nome completo.
+- `telefone`: contato do cliente.
+- `endereco`: referência à classe `Endereco`.
+
+#### Endereco.java
+Define os atributos relacionados ao endereço.
+
+**Atributos:**
+- `rua`
+- `numero`
+- `cidade`
+- `estado`
+- `cep`
+
+#### PratoPrincipal.java, Sobremesa.java, Pratos.java
+Classes representando os diferentes tipos de pratos ofertados.
+
+**Atributos comuns:**
+- `id`
+- `nome`
+- `descricao`
+- `preco`
+
+#### Restaurante.java
+Informações gerais sobre o restaurante.
+
+**Atributos:**
+- `nome`
+- `endereco`
+- `lista de pratos`
+- `lista de bebidas`
+
+###  DAO (Data Access Object)
+
+As classes do pacote `model.db` implementam o padrão DAO, realizando as operações CRUD diretamente no banco de dados.
+
+**Exemplos:**
+- **BebidaDAO.java** → inserção, remoção, atualização e consulta de bebidas.
+- **ClienteDAO.java** → gerencia o ciclo de vida dos clientes.
+- **ConexaoDB.java** → classe responsável pela conexão com o banco de dados.
+
+###  Controller
+
+Responsáveis por intermediar as requisições entre a camada de visualização (usuário) e as regras de negócio.
+
+**Exemplos:**
+- **BebidaController.java** → gerenciamento das operações sobre bebidas.
+- **ClienteController.java** → registro, atualização e consulta de clientes.
+- **CarrinhoController.java** → controle de itens adicionados ao carrinho de compra.
+- **ComidaController.java** → manipulação das informações relacionadas aos pratos principais.
+- **EnderecoController.java** → gestão dos endereços vinculados aos clientes.
+
+##  Modelo Entidade-Relacionamento (ER)
+
+[Cliente]───(1:N)───[Endereco]
+
+[Cliente]───(N:N)───[Pratos]
+                   |
+                   └─[Bebida]
+
+[Restaurante]───(1:N)───[Pratos]
+                 └─(1:N)───[Bebida]
+
+**Relacionamentos:**
+- Um cliente pode ter vários endereços.
+- Um cliente pode realizar múltiplos pedidos contendo diferentes pratos e bebidas.
+- O restaurante mantém um cardápio com diversas bebidas e pratos.
+
+##  Manual do Usuário
+
+###  Cadastro de Cliente
+
+**Classe:** `ClienteController`
+
+**Método:**
+
+```java
+public void cadastrarCliente(Cliente cliente)
+```
+
+**Exemplo de uso:**
+
+```java
+Cliente cliente = new Cliente("João", "99999-9999", endereco);
+clienteController.cadastrarCliente(cliente);
+```
+
+###  Listagem de Bebidas
+
+**Classe:** `BebidaController`
+
+**Método:**
+
+```java
+public List<Bebida> listarBebidas()
+```
+
+**Exemplo:**
+
+```java
+List<Bebida> bebidas = bebidaController.listarBebidas();
+bebidas.forEach(System.out::println);
+```
+
+###  Adicionar Prato ao Carrinho
+
+**Classe:** `CarrinhoController`
+
+**Método:**
+
+```java
+public void adicionarPratoAoCarrinho(PratoPrincipal prato)
+```
+
+**Exemplo:**
+
+```java
+PratoPrincipal prato = new PratoPrincipal("Feijoada", "Tradicional", 35.0);
+carrinhoController.adicionarPratoAoCarrinho(prato);
+```
+
+##  Configuração e Execução
+
+1. **Clonar o Repositório:**
+
+```bash
+git clone <url-do-repositorio>
+```
+
+2. **Configurar o Banco de Dados:**
+
+- Criar banco de dados MySQL ou PostgreSQL.
+- Atualizar informações de acesso no arquivo `ConexaoDB.java`.
+
+3. **Compilar e Executar:**
+
+```bash
+mvn clean install
+mvn exec:java -Dexec.mainClass="com.trabalho.restaurante.RestauranteApplication"
+```
+
+##  Requisitos
+
+- Java JDK 17+
+- Maven 3.6+
+- Banco de dados relacional (MySQL ou PostgreSQL)
+

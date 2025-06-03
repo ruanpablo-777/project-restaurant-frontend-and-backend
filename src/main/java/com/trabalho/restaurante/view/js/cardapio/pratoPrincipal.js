@@ -11,7 +11,7 @@ async function carregarCardapioCompleto() {
         for (const endpoint of endpoints) {
             const response = await fetch(endpoint.url);
             const itens = await response.json();
-            
+
             console.log(itens)
             // Agrupar por tipo (se houver tipos dentro de cada categoria)
             const grupos = {};
@@ -39,8 +39,9 @@ async function carregarCardapioCompleto() {
 
                 const grupoItemCardapio = document.createElement('div');
                 grupoItemCardapio.classList.add(tipo);
+                grupoItemCardapio.id = tipo;
                 grupoItemCardapio.style.display = 'flex';
-                
+
 
                 grupoItens.forEach(item => {
                     const itemCardapio = document.createElement('div');
@@ -75,10 +76,11 @@ async function carregarCardapioCompleto() {
                     itemCardapio.appendChild(nota);
 
                     const linkItem = document.createElement('a');
-                    grupoItemCardapio.addEventListener('click', function() {
-                    console.log(`Clicou no grupo: ${tipo}`);
-                    linkItem.href = `./comida.html?${tipo}=${item.id}`;
-                })
+                    grupoItemCardapio.addEventListener('click', function () {
+                        console.log(`Clicou no grupo: ${tipo}`);
+                        linkItem.href = `./comida.html?${tipo}=${item.id}`;
+                    })
+
                     linkItem.appendChild(itemCardapio);
 
                     grupoItemCardapio.appendChild(linkItem);

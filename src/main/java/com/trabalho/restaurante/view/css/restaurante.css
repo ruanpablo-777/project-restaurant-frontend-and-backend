@@ -137,6 +137,10 @@ a {
     z-index: 1000;
 }
 
+
+
+
+
 @media screen and (max-width: 768px) {
     .cardapio {
         grid-template-columns: 1fr;
