@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comida - printf(food.exe)</title>
+    <link rel="stylesheet" href="../css/comida.css">
+    <link rel="stylesheet" href="../css/navBar.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+ <nav class="navbar">
+    <div class="logo">
+        <a href="./restaurante.html">printf(food.exe)</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+  </div>
+
+    <ul class="nav-links">
+        <li><a href="./restaurante.html">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Cardápio ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#pratos">Pratos</a></li>
+                <li><a href="#bebidas">Bebidas</a></li>
+                <li><a href="#sobremesas">Sobremesas</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="perfilDoUsuario.html">Perfil 👤</a></li>
+    </ul>
+    <button class="switch-theme" onclick="toggleDarkMode()">🌙</button>
+</nav>
+
+    <!-- Cabeçalho -->
+    <header>
+        <a class="home" href="restaurante.html">
+          
+        </a>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <section class="box-comida-container">
+            <div class="comida-container">
+
+                <!-- Imagem -->
+                <div class="imagem-container">
+                    <img class="image-food" src="../assets/comida.jpg" alt="Imagem da comida">
+                </div>
+
+                <!-- Informações -->
+                <div class="container-price-and-buy">
+                    <h2 class="nome-food">Nome da Comida</h2>
+
+                    <article class="description">
+                        <h3>Descrição</h3>
+                        <p class="description-food">
+                            Uma deliciosa combinação de ingredientes selecionados, preparada com carinho e dedicação. Perfeita para quem busca sabor e qualidade.
+                        </p>
+                    </article>
+
+                    <article class="ingredients">
+                        <h3>Ingredientes</h3>
+                        <ul>
+                            <li>Arroz branco</li>
+                            <li>Feijão preto</li>
+                            <li>Carne assada</li>
+                            <li>Batata frita</li>
+                            <li>Salada fresca</li>
+                        </ul>
+                    </article>
+
+                    <div class="price-and-buy">
+                        <div class="price">
+                            <p><strong>R$ 20,00</strong></p>
+                            <p class="nota-food">Nota: ⭐⭐⭐⭐⭐ 5.0</p>
+                        </div>
+                        <div class="buy-food">
+                            <a href="pedido.html">
+                                <button class="comprar-comida">Comprar</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 printf(food.exe). Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/comida.js"></script>
+    <script src="../js/darkMode.js"></script>
+    <script src="../js/navBar.js"></script>
+</body>
+
+</html>

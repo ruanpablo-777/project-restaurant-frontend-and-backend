@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/navBar.css">
+    <link rel="stylesheet" href="../css/carrinho.css">
+    <title>Carrinho</title>
+</head>
+<body>
+   <nav class="navbar">
+    <div class="logo">
+        <a href="./restaurante.html">printf(food.exe)</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+  </div>
+
+    <ul class="nav-links">
+        <li><a href="./restaurante.html">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Cardápio ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#pratos">Pratos</a></li>
+                <li><a href="#bebidas">Bebidas</a></li>
+                <li><a href="#sobremesas">Sobremesas</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="perfilDoUsuario.html">Perfil 👤</a></li>
+    </ul>
+    <button class="switch-theme" onclick="toggleDarkMode()">🌙</button>
+</nav>
+
+   
+
+    <a class="home" href="restaurante.html">
+    </a>
+    <div class="box-carrinho-container">
+        <div class="carrinho-container">
+            <h2>Fazendo seu pedido</h2>
+            <div class="adress">
+                <h3 class="entrega">Entrega</h3>
+                <p class="street">R. Leoberto Leal,4343</p>
+                <p class="city">apto 300 G - Biguaçu/SC</p>
+            </div>
+            <h3 class="time-to-delivery">
+                Hoje, 41-51 min
+            </h3>
+            <div class="time-and-price">
+                <p class="parttens">Padrão</p>
+                <p class="delivery">Hoje, 41-51 min</p>
+                <p class="price">R$ 20,00</p>
+            </div>
+        </div>
+        <div class="pedido-container">
+            <p class="your-pedido">
+                Seu pedido
+            </p>
+            <p class="pedido">
+                1x prato feitos com Filé Mignon, 1x prato feitos com Frango, 1x prato f
+            </p>
+            <div class="sub-price">
+                <p>Subtotal</p>
+                <p class="subtotal">R$ 20,00</p>
+            </div>
+            <div class="taxa-de-entrega">
+                <p>Taxa de entrega</p>
+                <p class="taxa">11,59</p>
+            </div>
+            <div class="total">
+                <p>Total</p>
+                <p class="total-pedido">31,59</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="../js/pedido.js"></script>
+<script src="../js/darkMode.js"></script>
+<script src="../js/navBar.js"></script>
+
+</html>

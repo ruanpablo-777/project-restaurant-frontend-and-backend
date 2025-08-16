@@ -24,7 +24,7 @@ public class PratoPrincipal extends Pratos{
         this.acompanhamento = acompanhamento;
         this.isVegan = isVegan;
     }
-
+    
     @Override
     public String descricao() {
         return String.format(
