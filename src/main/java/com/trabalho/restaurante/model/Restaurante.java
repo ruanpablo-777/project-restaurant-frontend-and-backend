@@ -1,6 +1,5 @@
 package com.trabalho.restaurante.model;
 
-import com.trabalho.restaurante.model.db.EnderecoDAO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

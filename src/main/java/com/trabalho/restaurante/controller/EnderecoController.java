@@ -2,16 +2,13 @@ package com.trabalho.restaurante.controller;
 
 import com.trabalho.restaurante.model.Endereco;
 import com.trabalho.restaurante.model.db.ClienteDAO;
-import com.trabalho.restaurante.model.db.ConexaoDB;
 import com.trabalho.restaurante.model.db.EnderecoDAO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Map;
 

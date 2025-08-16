@@ -1,7 +1,6 @@
 package com.trabalho.restaurante.model.db;
 
 import com.trabalho.restaurante.model.Bebida;
-import com.trabalho.restaurante.model.PratoPrincipal;
 
 import java.sql.*;
 import java.util.ArrayList;

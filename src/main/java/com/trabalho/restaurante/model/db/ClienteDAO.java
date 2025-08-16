@@ -2,7 +2,6 @@ package com.trabalho.restaurante.model.db;
 
 import com.trabalho.restaurante.model.Cliente;
 import com.trabalho.restaurante.model.Endereco;
-import com.trabalho.restaurante.model.Restaurante;
 
 import java.sql.*;
 

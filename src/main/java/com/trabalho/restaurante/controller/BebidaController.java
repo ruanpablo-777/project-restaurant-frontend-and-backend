@@ -2,7 +2,6 @@ package com.trabalho.restaurante.controller;
 
 import com.trabalho.restaurante.model.Bebida;
 import com.trabalho.restaurante.model.db.BebidaDAO;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

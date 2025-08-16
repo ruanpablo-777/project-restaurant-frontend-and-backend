@@ -2,19 +2,14 @@ package com.trabalho.restaurante.controller;
 
 import com.trabalho.restaurante.model.Cliente;
 import com.trabalho.restaurante.model.Endereco;
-import com.trabalho.restaurante.model.Sobremesa;
 import com.trabalho.restaurante.model.db.ClienteDAO;
-import com.trabalho.restaurante.model.db.ConexaoDB;
 import com.trabalho.restaurante.model.db.EnderecoDAO;
-import com.trabalho.restaurante.model.db.SobremesaDAO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 
 @RestController
