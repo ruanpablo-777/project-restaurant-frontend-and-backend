@@ -1,3 +1,4 @@
+const API_URL="https://project-restaurant-backend-gn0j.onrender.com"
 const urlParams = new URLSearchParams(window.location.search);
 console.log(urlParams.toString()); // Verifica os parâmetros da URL
 const paramsComida = urlParams.toString().split('=')[0]; // Extrai o ID da comida da URL

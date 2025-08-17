@@ -1,5 +1,5 @@
+const API_URL="https://project-restaurant-backend-gn0j.onrender.com"
 const form = document.getElementById("form-cadastro");
-
 
 form.addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o formulário de recarregar a página

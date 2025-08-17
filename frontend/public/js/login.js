@@ -1,4 +1,4 @@
-
+const API_URL="https://project-restaurant-backend-gn0j.onrender.com"
 document.getElementById('login-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
