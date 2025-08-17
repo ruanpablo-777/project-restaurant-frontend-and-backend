@@ -1,9 +1,9 @@
 async function carregarCardapioCompleto() {
     try {
         const endpoints = [
-            { url: 'http://localhost:3000/pratoprincipal', nome: 'Pratos' },
-            { url: 'http://localhost:3000/bebida', nome: 'Bebidas' },
-            { url: 'http://localhost:3000/sobremesa', nome: 'Sobremesas' } // Se tiver
+            { url: `${API_URL}/pratoprincipal`, nome: `Pratos` },
+            { url: `${API_URL}/bebida`, nome: `Bebidas` },
+            { url: `${API_URL}/sobremesa`, nome: `Sobremesas` } // Se tiver
         ];
 
         const cardapioDiv = document.querySelector('.cardapio');

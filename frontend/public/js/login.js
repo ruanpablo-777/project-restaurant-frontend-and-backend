@@ -1,3 +1,4 @@
+
 document.getElementById('login-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -5,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
     const senha = document.getElementById('password').value;
 
     try {
-        const resposta = await fetch('http://localhost:3000/login', {
+        const resposta = await fetch(`${API_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,5 +1,6 @@
 const form = document.getElementById("form-cadastro");
 
+
 form.addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o formulário de recarregar a página
 
@@ -20,7 +21,7 @@ form.addEventListener("submit", function (event) {
 
     console.log("Enviando cliente:", cliente);
 
-    fetch("http://localhost:3000/cadastrar", {
+    fetch(`${API_URL}/cadastrar`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

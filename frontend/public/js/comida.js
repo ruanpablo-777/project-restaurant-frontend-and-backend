@@ -4,7 +4,7 @@ const paramsComida = urlParams.toString().split('=')[0]; // Extrai o ID da comid
 const id = urlParams.toString().split('=')[1]; // Extrai o ID da comida da URL
 console.log(paramsComida)
 
-fetch(`http://localhost:3000/${paramsComida}/${id}`)
+fetch(`${API_URL}/${paramsComida}/${id}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Erro ao buscar a comida');

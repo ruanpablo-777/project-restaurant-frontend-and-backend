@@ -1,0 +1,1 @@
+const API_URL="https://project-restaurant-backend-gn0j.onrender.com"

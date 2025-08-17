@@ -1,6 +1,6 @@
 
 
-fetch('http://localhost:3000/perfildousuario', {
+fetch(`${API_URL}/perfildousuario`, {
     method: 'POST',
     credentials: 'include'
 })
