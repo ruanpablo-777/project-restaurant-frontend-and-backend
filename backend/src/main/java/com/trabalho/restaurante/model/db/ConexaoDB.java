@@ -8,14 +8,14 @@ public class ConexaoDB {
 
     public static Connection getConexao() throws ClassNotFoundException, SQLException {
 
-        String nomeBaseDados = "testeendereco";
-        String porta = "3306";
-        String enderecoBaseDados = String.format("jdbc:mysql://localhost:%s/%s", porta, nomeBaseDados);
+        String nomeBaseDados = System.getenv("DATABASE_USERNAME");
+        String porta = System.getenv("DATABASE_PORT");
+        String enderecoBaseDados = String.format( "jdbc:postgresql://restaurante_bd_backend_user:gyMatGG7CWnJYtJBkWxVgW5c4OtilnQz@dpg-d2gus0gdl3ps73fofj10-a/restaurante_bd_backend", porta, nomeBaseDados);
 
-        String login = "root";
-        String senha = "";
+        String login = System.getenv("DATABASE_USER");
+        String senha = System.getenv("DATABASE_PASSWORD");
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        Class.forName("org.postgresql.Driver");
 
         return DriverManager.getConnection(enderecoBaseDados, login, senha);
 
